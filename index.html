@@ -274,6 +274,7 @@ footer{padding:2rem 0 3rem;color:var(--ink-soft);font-size:.9rem;font-stretch:85
         <p>The SMB is the car's cell monitoring unit, the board that reads every cell voltage and temperature for the battery management system. It's built around a TI BQ79616 analog front end and talks over a daisy chain to a BQ79600 bridge on the separate BPS Leader board.</p>
         <p>I drew the schematic and laid out the PCB in KiCad, then took it through many rounds of board review with teammates. I sized the balancing resistors for 240 mA and specified the passives for temperature sensing and ground isolation.</p>
         <p>The board is split into three ground domains (AVSS, DVSS, CVSS) so communication noise stays off the cell measurements. Boards talk to each other in a ring, with transformer isolation on both daisy-chain ports and RC filtering on the cell and bus bar sense lines.</p>
+        <a class="more" href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard" target="_blank" rel="noopener">View the KiCad project on GitHub &#8599;</a>
       </div>
       <div>
         <figure class="fig">
