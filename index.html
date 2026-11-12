@@ -5,444 +5,378 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leo Block | ECE at UT Austin</title>
 <meta name="description" content="Projects by Leo Block: battery monitoring hardware and wire harnesses for Longhorn Racing Solar, plus a 1994 Acura Integra.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#0a0a0a;
-  --text:#1c2b33;
-  --muted:#5f6b73;
-  --line:#dde3e7;
-  --wash:#f1f4f7;
-  --blue:#0064e0;
-  --white:#ffffff;
+  --text:#1b1b1b;
+  --muted:#5e6166;
+  --line:#dcdcdc;
+  --link:#1a55c4;
+  --bg:#ffffff;
+  --img-bg:#f2f2f2;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--white);color:var(--text);font:17px/1.6 Figtree,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--link)}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--link);outline-offset:2px}
 img{display:block;max-width:100%;height:auto}
-a{color:var(--blue)}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-weight:600;letter-spacing:-.01em;color:var(--black)}
+.page{max-width:1000px;margin:0 auto;padding:0 20px}
+.text{max-width:680px}
 
-/* pills */
-.pill{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;border:1.5px solid transparent;white-space:nowrap;cursor:pointer;font-family:inherit}
-.pill.solid{background:var(--blue);color:#fff}
-.pill.solid:hover{background:#0050b3}
-.pill.dark{background:var(--black);color:#fff}
-.pill.dark:hover{background:#333}
-.pill.light{background:#fff;color:var(--black)}
-.pill.ghost{border-color:currentColor;color:inherit}
-.pill.ghost:hover{background:rgba(127,127,127,.12)}
+/* header */
+header.hero{position:relative;min-height:min(72vh,680px);display:flex;align-items:flex-end;background:#222 url(img/smb-bench.jpg) center 40%/cover;color:#fff}
+header.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,0) 30%,rgba(0,0,0,.75))}
+header.hero .page{position:relative;width:100%;padding-bottom:40px}
+header h1{margin:0;font-size:clamp(2.6rem,6vw,4.2rem);line-height:1.05}
+header p{margin:10px 0 0;font-size:1.15rem;max-width:620px;color:rgba(255,255,255,.92)}
+.contact{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:1rem}
+.contact a{color:#fff;font-weight:600}
+header.hero small{position:absolute;right:20px;bottom:14px;font-size:.8rem;color:rgba(255,255,255,.7)}
+.lead.bleed{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+.lead.bleed img{border-radius:0;width:100%;height:min(70vh,640px);object-fit:cover}
+.lead.bleed button.zoom{border-radius:0}
+.lead.bleed figcaption{max-width:1000px;margin:8px auto 0;padding:0 20px}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.nav .name{font-weight:700;font-size:1.1rem;color:var(--black);text-decoration:none}
-.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
-.nav ul a{color:var(--text);text-decoration:none}
-.nav ul a:hover{color:var(--blue)}
-.nav .pill{height:38px;padding:0 18px}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);font-size:.95rem}
+nav.toc .page{display:flex;gap:4px 20px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+nav.toc a{color:var(--text);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
 
-/* hero */
-.hero{position:relative;height:min(86vh,820px);min-height:520px;background:#222 url(img/bps-integration.jpg) center/cover;color:#fff}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.72))}
-.hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:56px}
-.hero h1{color:#fff;margin:0;font-size:clamp(2.8rem,7vw,5.2rem);line-height:1.02}
-.hero p{margin:14px 0 26px;max-width:600px;font-size:clamp(1.05rem,1.8vw,1.3rem);line-height:1.45;color:rgba(255,255,255,.92)}
-.ctas{display:flex;gap:12px;flex-wrap:wrap}
-.hero small{position:absolute;right:24px;bottom:20px;z-index:1;font-size:.8rem;color:rgba(255,255,255,.75)}
+/* project index */
+.index{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0 8px;padding:0;list-style:none}
+.index a{display:block;color:var(--text);text-decoration:none}
+.index img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--img-bg);border-radius:4px}
+.index .contain{object-fit:contain;background:#fff;border:1px solid var(--line)}
+.index strong{display:block;margin-top:8px;font-size:1rem;line-height:1.3}
+.index span{color:var(--muted);font-size:.9rem}
+.index a:hover strong{text-decoration:underline}
+.index .noimg{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;border:1px solid var(--line);border-radius:4px;background:#fff;padding:16px;font-size:.9rem;color:var(--muted);text-align:center}
 
-/* project picker */
-.picker{background:var(--wash);padding:64px 0}
-.picker h2{margin:0 0 24px;font-size:clamp(1.7rem,3vw,2.3rem)}
-.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;list-style:none;margin:0;padding:0}
-.cards a{display:block;height:100%;background:#fff;border-radius:20px;overflow:hidden;text-decoration:none;color:var(--text);transition:transform .2s}
-.cards a:hover{transform:translateY(-3px)}
-.cards .im{aspect-ratio:1/1;background:#e7ecef center/cover no-repeat;display:flex;align-items:center;justify-content:center}
-.cards .im.contain{background-size:84%;background-color:#fff}
-.cards .im.dark{background:var(--black);padding:16px}
-.cards div.t{padding:14px 16px 18px}
-.cards strong{display:block;font-weight:600;color:var(--black);line-height:1.25}
-.cards span{display:block;font-size:.88rem;color:var(--muted);margin-top:4px}
+/* projects */
+section.project{padding:56px 0 8px;border-top:1px solid var(--line);margin-top:48px}
+h2{margin:0;font-size:1.75rem;line-height:1.25}
+.meta{margin:4px 0 0;color:var(--muted)}
+.lead{margin:20px 0 6px}
+.lead img{width:100%;border-radius:4px;background:var(--img-bg)}
+figure{margin:0}
+figcaption{color:var(--muted);font-size:.9rem;line-height:1.4;margin-top:6px}
+.shots{display:grid;gap:16px;margin:24px 0 0}
+.shots.two{grid-template-columns:1fr 1fr}
+.shots.three{grid-template-columns:repeat(3,1fr)}
+.shots img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;background:var(--img-bg)}
+.shots .contain img{object-fit:contain;background:#fff;border:1px solid var(--line)}
+button.zoom{all:unset;display:block;width:100%;cursor:zoom-in;border-radius:4px}
+button.zoom:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+h3{font-size:1.1rem;margin:26px 0 6px}
+ul.did{margin:0;padding-left:1.2em}
+ul.did li{margin:0 0 6px}
+.links{margin:16px 0 0;display:flex;flex-wrap:wrap;gap:6px 22px}
+.badge{display:inline-block;font-size:.85rem;font-weight:600;border:1px solid var(--text);border-radius:3px;padding:0 6px;margin-left:8px;vertical-align:4px}
 
-/* project */
-.band{position:relative;height:min(74vh,720px);min-height:420px;background:#1a1a1a center/cover no-repeat;color:#fff}
-.band::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7))}
-.band .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:44px}
-.band h2{color:#fff;margin:0;font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05}
-.band p{margin:10px 0 0;font-size:1.1rem;color:rgba(255,255,255,.9)}
-.band.dark{background:var(--black)}
-.band.dark::after{display:none}
-.band.dark .wrap{position:absolute;left:0;right:0;bottom:0;height:auto}
-.tag{display:inline-block;margin-left:12px;vertical-align:middle;font-size:.85rem;font-weight:600;padding:4px 12px;border-radius:999px;background:#fff;color:var(--black)}
-
-.detail{padding:56px 24px 24px}
-.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:56px;align-items:start}
-.lede{font-size:1.25rem;line-height:1.5;color:var(--black);margin:0 0 24px;max-width:680px}
-.cols h3{font-size:1.1rem;margin:0 0 10px}
-ul.did{margin:0;padding-left:1.15em;max-width:680px}
-ul.did li{margin-bottom:8px}
-.facts{background:var(--wash);border-radius:20px;padding:24px 26px}
-.facts dl{margin:0;display:grid;gap:14px}
-.facts dt{font-size:.88rem;color:var(--muted)}
-.facts dd{margin:2px 0 0;font-weight:600;color:var(--black);font-size:1.05rem;line-height:1.35}
-.facts > .pill{margin-top:20px}
-.facts .links{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:20px}
-
-.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;padding:24px 24px 88px}
-.gallery figure,.shot{margin:0}
-.gallery .s4{grid-column:span 4}.gallery .s6{grid-column:span 6}.gallery .s8{grid-column:span 8}
-.zoom{all:unset;display:block;width:100%;cursor:zoom-in;border-radius:20px;overflow:hidden;background:var(--wash)}
-.zoom:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-.zoom img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .4s}
-.zoom:hover img{transform:scale(1.02)}
-.contain .zoom{border:1px solid var(--line);background:#fff}
-.contain .zoom img{object-fit:contain;padding:10px}
-.wide .zoom img{aspect-ratio:16/9}
-figcaption{font-size:.9rem;color:var(--muted);margin-top:10px;padding-left:4px}
-
-/* 2027 */
-.diagram{height:100%;display:flex;align-items:center;justify-content:center;padding:40px 24px 170px}
-.diagram svg{width:min(820px,100%);height:auto}
-table.pinout{border-collapse:collapse;width:100%;font-size:.95rem}
-table.pinout th,table.pinout td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
-table.pinout th{color:var(--muted);font-weight:500}
-table.pinout td:first-child,table.pinout td:nth-child(3){font-weight:600;color:var(--black)}
-
-/* integra heading */
-.title-plain h2{font-size:clamp(2.2rem,5.5vw,4rem);line-height:1.05;margin:0}
-.title-plain p{margin:8px 0 32px;color:var(--muted);font-size:1.1rem}
+table.pinout{border-collapse:collapse;width:100%;max-width:520px;margin-top:8px;font-size:.95rem}
+table.pinout th,table.pinout td{text-align:left;padding:5px 10px;border-bottom:1px solid var(--line)}
+table.pinout th{border-bottom:2px solid var(--text)}
+.chain{border:1px solid var(--line);border-radius:4px;padding:16px;background:#fff}
+.chain svg{width:100%;height:auto;font-family:inherit}
 
 /* experience & skills */
-.wash{background:var(--wash);padding:80px 0}
-.wash h2{margin:0 0 28px;font-size:clamp(1.8rem,3.5vw,2.6rem)}
-.jobs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.job{background:#fff;border-radius:20px;padding:26px}
-.job h3{margin:0;font-size:1.1rem;line-height:1.3}
-.job .when{margin:4px 0 14px;color:var(--muted);font-size:.92rem}
-.job ul{margin:0;padding-left:1.1em;font-size:.97rem}
-.job li{margin-bottom:6px}
-.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.skills div{background:#fff;border-radius:20px;padding:22px 26px}
-.skills h3{margin:0 0 6px;font-size:1rem}
-.skills p{margin:0}
-
-/* footer */
-footer{background:var(--black);color:#fff;padding:88px 0 40px}
-footer h2{color:#fff;margin:0;font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.1;max-width:820px}
-footer .ctas{margin-top:28px}
-footer .small{margin-top:72px;padding-top:20px;border-top:1px solid #2b2b2b;color:#9aa3a8;font-size:.9rem}
+section.plain{padding:56px 0 8px;border-top:1px solid var(--line);margin-top:48px}
+.job{margin-top:22px}
+.job h3{margin:0;font-size:1.1rem}
+.job .meta{margin:0 0 6px}
+dl.skills{display:grid;grid-template-columns:max-content 1fr;gap:6px 20px;margin:16px 0 0}
+dl.skills dt{font-weight:600}
+dl.skills dd{margin:0}
+footer{margin-top:72px;background:#0a0a0a;color:#fff;padding:64px 0 56px;font-size:1.35rem;line-height:1.4}
+footer a{color:#fff;font-weight:600}
 
 /* lightbox */
-dialog.lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;overflow:visible}
-dialog.lb::backdrop{background:rgba(0,0,0,.88)}
-dialog.lb img{max-width:94vw;max-height:84vh;border-radius:12px;background:#fff}
-dialog.lb p{color:#fff;margin:10px 0 0;font-size:.95rem}
-dialog.lb .pill{position:fixed;top:14px;right:14px}
+dialog.lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh}
+dialog.lb::backdrop{background:rgba(0,0,0,.85)}
+dialog.lb img{max-width:94vw;max-height:86vh;background:#fff}
+dialog.lb p{color:#fff;margin:8px 0 0;font-size:.95rem}
+dialog.lb button{position:fixed;top:12px;right:12px;font-size:1rem;padding:6px 12px;border:0;border-radius:3px;background:#fff;cursor:pointer}
 
-@media (max-width:1000px){
-  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .jobs{grid-template-columns:1fr}
-}
 @media (max-width:760px){
   body{font-size:16px}
-  .nav ul{display:none}
-  .cols{grid-template-columns:1fr;gap:28px}
-  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .gallery .s4,.gallery .s6,.gallery .s8{grid-column:span 12}
-  .skills{grid-template-columns:1fr}
-  .band{height:62vh;min-height:360px}
-  .hero{height:78vh}
-  .diagram{padding-bottom:170px}
+  .index{grid-template-columns:1fr 1fr}
+  .shots.three{grid-template-columns:1fr 1fr}
+  dl.skills{grid-template-columns:1fr}
+  dl.skills dd{margin-bottom:8px}
 }
-@media (prefers-reduced-motion:reduce){.cards a,.zoom img{transition:none}}
+@media (max-width:480px){
+  .index{gap:14px}
+  .index strong{font-size:.95rem}
+  .shots.two,.shots.three{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="name" href="#top">Leo Block</a>
-    <ul>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-    </ul>
-    <a class="pill dark" href="mailto:leodblock@gmail.com">Email me</a>
+<header class="hero">
+  <div class="page">
+  <h1>Leo Block</h1>
+  <p>Electrical and Computer Engineering at UT Austin, graduating May 2028. I lead wire harness design for Longhorn Racing Solar and build battery monitoring hardware for the car's pack.</p>
+  <div class="contact">
+    <a href="mailto:leodblock@gmail.com">leodblock@gmail.com</a>
+    <a href="https://www.linkedin.com/in/leo-block">LinkedIn</a>
+    <a href="https://github.com/leoblock927">GitHub</a>
   </div>
+  </div>
+  <small>Bringing up the Segment Monitoring Board, 2026</small>
 </header>
 
-<section class="hero" id="top">
-  <div class="wrap">
-    <h1>Leo Block</h1>
-    <p>Electrical and Computer Engineering at UT Austin. I lead wire harness design for Longhorn Racing Solar and build the battery monitoring hardware for the car's pack.</p>
-    <div class="ctas">
-      <a class="pill solid" href="#projects">See my projects</a>
-      <a class="pill ghost" href="https://www.linkedin.com/in/leo-block">LinkedIn</a>
-      <a class="pill ghost" href="https://github.com/leoblock927">GitHub</a>
-    </div>
+<nav class="toc" aria-label="Sections">
+  <div class="page">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="mailto:leodblock@gmail.com">Email me</a>
   </div>
-  <small>Battery protection system integration test, 2026</small>
-</section>
+</nav>
 
-<section class="picker" id="projects">
-  <div class="wrap">
-    <h2>Projects</h2>
-    <ul class="cards">
-      <li><a href="#smb"><div class="im" style="background-image:url(img/smb-pcb.jpg)"></div><div class="t"><strong>Segment Monitoring Board</strong><span>BMS hardware, 2026</span></div></a></li>
-      <li><a href="#daq"><div class="im" style="background-image:url(img/daq-harness.jpg)"></div><div class="t"><strong>Data Acquisition Wire Harness</strong><span>14 boards, 65 ft, 2026</span></div></a></li>
-      <li><a href="#battery"><div class="im contain" style="background-image:url(img/batt-cells-cad.jpg)"></div><div class="t"><strong>24V Supplemental Battery</strong><span>Pack and protection PCB, 2025</span></div></a></li>
-      <li><a href="#harness2027"><div class="im dark"><svg viewBox="0 0 400 110" width="100%" aria-hidden="true" font-family="Figtree, sans-serif"><g fill="none" stroke="#fff" stroke-width="3"><rect x="2" y="30" width="80" height="44" rx="10"/><rect x="128" y="30" width="80" height="44" rx="10"/><rect x="254" y="18" width="142" height="68" rx="12"/></g><g stroke="#3d8bff" stroke-width="7"><line x1="82" y1="52" x2="128" y2="52"/><line x1="208" y1="52" x2="254" y2="52"/></g><text x="325" y="59" fill="#fff" font-size="22" font-weight="600" text-anchor="middle">Battery box</text></svg></div><div class="t"><strong>2027 Vehicle Wire Harness</strong><span>In progress</span></div></a></li>
-      <li><a href="#integra"><div class="im" style="background-image:url(img/integra-green.jpg)"></div><div class="t"><strong>1994 Acura Integra</strong><span>My own car, 2023 to now</span></div></a></li>
-    </ul>
-  </div>
-</section>
+<main class="page">
 
-<main>
+<ul class="index" id="projects" aria-label="Projects">
+  <li><a href="#smb"><img src="img/smb-pcb.jpg" alt="" width="1400" height="1336"><strong>Segment Monitoring Board</strong><span>BMS hardware, 2026 to now</span></a></li>
+  <li><a href="#daq"><img src="img/daq-harness.jpg" alt="" width="1400" height="703"><strong>Data Acquisition Wire Harness</strong><span>14 boards, 65 ft of cable, 2026</span></a></li>
+  <li><a href="#battery"><img class="contain" src="img/batt-cells-cad.jpg" alt="" width="1224" height="854"><strong>24V Supplemental Battery</strong><span>Pack and protection PCB, 2025</span></a></li>
+  <li><a href="#harness2027"><div class="noimg"><svg viewBox="0 0 340 90" width="100%" aria-hidden="true"><g fill="none" stroke="#1b1b1b" stroke-width="2"><rect x="2" y="25" width="70" height="40" rx="3"/><rect x="112" y="25" width="70" height="40" rx="3"/><rect x="222" y="15" width="114" height="60" rx="3" stroke-width="3"/></g><g stroke="#1a55c4" stroke-width="5"><line x1="72" y1="45" x2="112" y2="45"/><line x1="182" y1="45" x2="222" y2="45"/></g><g font-size="14" fill="#1b1b1b" text-anchor="middle" font-family="sans-serif"><text x="37" y="50">Board</text><text x="147" y="50">Board</text><text x="279" y="50" font-weight="600">Battery box</text></g></svg></div><strong>2027 Vehicle Wire Harness</strong><span>In progress, 2026 to now</span></a></li>
+  <li><a href="#integra"><img src="img/integra-green.jpg" alt="" width="530" height="358"><strong>1994 Acura Integra</strong><span>My own car, 2023 to now</span></a></li>
+</ul>
 
 <!-- SMB -->
-<article id="smb">
-  <div class="band" style="background-image:url(img/smb-pcb.jpg)">
-    <div class="wrap"><h2>Segment Monitoring Board</h2><p>Power Systems BPS Engineer, Longhorn Racing Solar. May 2026 to present.</p></div>
+<section class="project" id="smb">
+  <h2>Segment Monitoring Board</h2>
+  <p class="meta">Power Systems BPS Engineer, Longhorn Racing Solar. May 2026 to present.</p>
+
+  <figure class="lead bleed">
+    <button type="button" class="zoom"><img src="img/bps-integration.jpg" alt="Full battery protection system on a lab bench with the leader board, segment monitoring boards, power supplies and an oscilloscope" width="1600" height="901"></button>
+    <figcaption>Full battery protection system integration test. The SMB reports cell voltages and thermistor temperatures back to the leader board.</figcaption>
+  </figure>
+
+  <div class="text">
+    <p>The SMB is the car's cell monitoring board. It reads every cell voltage and temperature for the battery management system, using a TI BQ79616 and an isolated daisy chain back to a BQ79600 on the BPS Leader board.</p>
+    <h3>What I did</h3>
+    <ul class="did">
+      <li>Drew the schematic and laid out the PCB in KiCad, then took it through several rounds of team review</li>
+      <li>Sized cell balancing for 240 mA and split the board into three ground domains so comms noise stays off the cell readings</li>
+      <li>Put transformer isolation on both daisy-chain ports and RC filtering on the cell and bus bar sense lines</li>
+      <li>Assembled Rev A in-house and brought it up on the bench with a 28.8 V supply standing in for a battery segment</li>
+      <li>Ran hardware-in-the-loop tests on a cell simulator before connecting real cells, then integrated the full system and tracked down a 3.3 V rail fault</li>
+    </ul>
   </div>
-  <div class="wrap detail">
-    <div class="cols">
-      <div>
-        <p class="lede">The SMB is the car's cell monitoring board. It reads every cell voltage and temperature for the battery management system and reports back over an isolated daisy chain.</p>
-        <h3>What I did</h3>
-        <ul class="did">
-          <li>Drew the schematic and laid out the PCB in KiCad, then took it through several rounds of team review</li>
-          <li>Sized cell balancing for 240 mA and split the board into three ground domains so comms noise stays off the cell readings</li>
-          <li>Put transformer isolation on both daisy-chain ports and RC filtering on the cell and bus bar sense lines</li>
-          <li>Assembled Rev A in-house and brought it up on the bench with a 28.8 V supply standing in for a battery segment</li>
-          <li>Ran hardware-in-the-loop tests on a cell simulator before connecting real cells, then integrated the full system and tracked down a 3.3 V rail fault</li>
-        </ul>
-      </div>
-      <aside class="facts">
-        <dl>
-          <div><dt>Monitors</dt><dd>8 cells and 8 thermistors per board</dd></div>
-          <div><dt>Chips</dt><dd>TI BQ79616 front end, BQ79600 bridge on the leader board</dd></div>
-          <div><dt>Balancing</dt><dd>240 mA max, passive</dd></div>
-          <div><dt>Tested with</dt><dd>Cell simulator, oscilloscope, full system integration</dd></div>
-        </dl>
-        <a class="pill dark" href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard">KiCad project on GitHub</a>
-      </aside>
-    </div>
+
+  <div class="shots three">
+    <figure class="contain"><button type="button" class="zoom"><img src="img/smb-pcb.jpg" alt="KiCad PCB layout of the Segment Monitoring Board" width="1400" height="1336" loading="lazy"></button><figcaption>PCB layout, Rev A</figcaption></figure>
+    <figure class="contain"><button type="button" class="zoom"><img src="img/smb-schematic.jpg" alt="KiCad schematic of the Segment Monitoring Board" width="1400" height="966" loading="lazy"></button><figcaption>Schematic in KiCad</figcaption></figure>
+    <figure><button type="button" class="zoom"><img src="img/smb-wake-scope.jpg" alt="Oscilloscope capture of a wake command on the daisy chain" width="1024" height="768" loading="lazy"></button><figcaption>Scope capture: the leader's wake command reaching the SMB</figcaption></figure>
   </div>
-  <div class="wrap gallery">
-    <figure class="s8 wide"><button type="button" class="zoom"><img src="img/smb-bench.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope" width="1600" height="901" loading="lazy"></button><figcaption>Bench bring-up with the BPS Leader</figcaption></figure>
-    <figure class="s4"><button type="button" class="zoom"><img src="img/smb-wake-scope.jpg" alt="Oscilloscope capture of a wake command on the daisy chain" width="1024" height="768" loading="lazy"></button><figcaption>The leader's wake command reaching the SMB</figcaption></figure>
-    <figure class="s6 contain"><button type="button" class="zoom"><img src="img/smb-schematic.jpg" alt="KiCad schematic of the Segment Monitoring Board" width="1400" height="966" loading="lazy"></button><figcaption>Schematic in KiCad</figcaption></figure>
-    <figure class="s6"><button type="button" class="zoom"><img src="img/bps-integration.jpg" alt="Full battery protection system on a lab bench" width="1600" height="901" loading="lazy"></button><figcaption>Full system test: cell and thermistor readings</figcaption></figure>
+  <div class="shots two">
+    <figure><button type="button" class="zoom"><img src="img/smb-bench.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope" width="1600" height="901" loading="lazy"></button><figcaption>Bench bring-up with the BPS Leader</figcaption></figure>
+    <figure class="contain" style="align-self:start"><div class="text" style="padding:4px 0">
+      <h3 style="margin-top:0">Specs</h3>
+      <ul class="did">
+        <li>8 cells and 8 thermistors per board</li>
+        <li>240 mA max passive balancing</li>
+        <li>AVSS, DVSS and CVSS ground domains</li>
+        <li>Tools: KiCad, oscilloscope, cell simulator</li>
+      </ul>
+    </div></figure>
   </div>
-</article>
+  <p class="links"><a href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard">KiCad project on GitHub</a></p>
+</section>
 
 <!-- DAQ -->
-<article id="daq">
-  <div class="band" style="background-image:url(img/daq-harness.jpg)">
-    <div class="wrap"><h2>Data Acquisition Wire Harness</h2><p>Wire Harness Project Manager, Longhorn Racing Solar. April to June 2026.</p></div>
+<section class="project" id="daq">
+  <h2>Data Acquisition Wire Harness</h2>
+  <p class="meta">Wire Harness Project Manager, Longhorn Racing Solar. April to June 2026.</p>
+
+  <figure class="lead bleed">
+    <button type="button" class="zoom"><img src="img/daq-harness.jpg" alt="Hand-built data acquisition harness with labeled connectors on a lab bench" width="1400" height="703"></button>
+    <figcaption>The finished harness before installation.</figcaption>
+  </figure>
+
+  <div class="text">
+    <p>This harness connects 14 data acquisition boards across 65 feet of cable. It ran in the car with zero on-track failures.</p>
+    <h3>What I did</h3>
+    <ul class="did">
+      <li>Routed it in EPLAN through the full vehicle CAD, so every wire length came from the real car</li>
+      <li>Wrote 17 pages of schematics, pinouts and build documentation so newer teammates could help build it</li>
+      <li>Led the hand build: crimping, soldering and heat shrink on every joint</li>
+      <li>Inspected all 124 connector joints before installation (2% defect rate)</li>
+    </ul>
   </div>
-  <div class="wrap detail">
-    <div class="cols">
-      <div>
-        <p class="lede">This harness connects 14 data acquisition boards across 65 feet of cable. It ran in the car with zero on-track failures.</p>
-        <h3>What I did</h3>
-        <ul class="did">
-          <li>Routed it in EPLAN through the full vehicle CAD, so every wire length came from the real car</li>
-          <li>Wrote 17 pages of schematics, pinouts and build documentation so newer teammates could help build it</li>
-          <li>Led the hand build: crimping, soldering and heat shrink on every joint</li>
-          <li>Inspected all 124 connector joints before installation (2% defect rate)</li>
-        </ul>
-      </div>
-      <aside class="facts">
-        <dl>
-          <div><dt>Boards connected</dt><dd>14</dd></div>
-          <div><dt>Cable</dt><dd>65 ft, cut to CAD lengths</dd></div>
-          <div><dt>Joints inspected</dt><dd>124, with a 2% defect rate</dd></div>
-          <div><dt>Tools</dt><dd>EPLAN Harness proD</dd></div>
-        </dl>
-        <div class="links">
-          <a class="pill dark" href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_model.html">3D harness model</a>
-          <a class="pill ghost" style="color:var(--black)" href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_guide.pdf">Schematics (PDF)</a>
-        </div>
-      </aside>
-    </div>
+
+  <div class="shots three">
+    <figure class="contain"><button type="button" class="zoom"><img src="img/daq-vehicle-cad.jpg" alt="Harness routing in the vehicle CAD model" width="914" height="662" loading="lazy"></button><figcaption>Routed through the vehicle CAD</figcaption></figure>
+    <figure class="contain"><button type="button" class="zoom"><img src="img/daq-can-sketch.jpg" alt="Hand sketch of the bottom telemetry CAN layout" width="590" height="691" loading="lazy"></button><figcaption>Early sketch of the bottom CAN layout</figcaption></figure>
+    <figure class="contain"><button type="button" class="zoom"><img src="img/daq-pinout.jpg" alt="EPLAN connector pinout for the TelCAN output" width="636" height="290" loading="lazy"></button><figcaption>EPLAN connector pinout</figcaption></figure>
   </div>
-  <div class="wrap gallery">
-    <figure class="s4 contain"><button type="button" class="zoom"><img src="img/daq-vehicle-cad.jpg" alt="Harness routing in the vehicle CAD model" width="914" height="662" loading="lazy"></button><figcaption>Routed through the vehicle CAD</figcaption></figure>
-    <figure class="s4"><button type="button" class="zoom"><img src="img/daq-can-sketch.jpg" alt="Hand sketch of the bottom telemetry CAN layout" width="590" height="691" loading="lazy"></button><figcaption>Early sketch of the bottom CAN layout</figcaption></figure>
-    <figure class="s4 contain"><button type="button" class="zoom"><img src="img/daq-pinout.jpg" alt="EPLAN connector pinout" width="636" height="290" loading="lazy"></button><figcaption>EPLAN connector pinout</figcaption></figure>
-  </div>
-</article>
+  <p class="links">
+    <a href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_model.html">3D harness model</a>
+    <a href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_guide.pdf">Schematics (PDF)</a>
+  </p>
+</section>
 
 <!-- Battery -->
-<article id="battery">
-  <div class="band" style="background-image:url(img/batt-printed-enclosure.jpg)">
-    <div class="wrap"><h2>24V Supplemental Battery</h2><p>Powertrain Battery Engineer, Longhorn Racing Solar. September to December 2025.</p></div>
-  </div>
-  <div class="wrap detail">
-    <div class="cols">
-      <div>
-        <p class="lede">A 20S1P NiMH pack that powers the car's ignition. The old pack had more than 50 overtemperature events. The new one has had close to none, and it's 34% smaller and 23% lighter.</p>
-        <h3>What I did</h3>
-        <ul class="did">
-          <li>Designed a protection PCB in KiCad with a 12 A fuse and two NTC thermistors</li>
-          <li>Simulated the protection circuit in LTspice before ordering boards</li>
-          <li>Checked trip response under load on an oscilloscope and looked for hot spots with a thermal camera</li>
-          <li>Redesigned the cell holder as a 3D-printed frame in SolidWorks and spot-welded the final pack</li>
-        </ul>
-      </div>
-      <aside class="facts">
-        <dl>
-          <div><dt>Overtemperature events</dt><dd>From 50+ to near zero</dd></div>
-          <div><dt>Size and weight</dt><dd>34% smaller, 23% lighter</dd></div>
-          <div><dt>Protection</dt><dd>12 A fuse, two NTC thermistors</dd></div>
-          <div><dt>Tools</dt><dd>KiCad, LTspice, SolidWorks</dd></div>
-        </dl>
-        <a class="pill dark" href="https://cloud.wikis.utexas.edu/wiki/spaces/LHRSOLAR/pages/486510866/2024-2026+Custom+Supplemental+Battery">Project documentation</a>
-      </aside>
-    </div>
-  </div>
-  <div class="wrap gallery">
-    <figure class="s6 contain"><button type="button" class="zoom"><img src="img/batt-cells-cad.jpg" alt="CAD model of NiMH cells seated in the 3D-printed frame" width="1224" height="854" loading="lazy"></button><figcaption>The 20-cell frame in SolidWorks</figcaption></figure>
-    <figure class="s6 contain"><button type="button" class="zoom"><img src="img/batt-protection-pcb.jpg" alt="Render of the protection PCB" width="1262" height="730" loading="lazy"></button><figcaption>Protection PCB</figcaption></figure>
-    <figure class="s6 contain"><button type="button" class="zoom"><img src="img/batt-enclosure-cad.jpg" alt="CAD model of the battery enclosure" width="1400" height="950" loading="lazy"></button><figcaption>Enclosure CAD</figcaption></figure>
-    <figure class="s6"><button type="button" class="zoom"><img src="img/batt-frame-sketch.jpg" alt="Dimensioned sketch of the cell frame" width="1400" height="991" loading="lazy"></button><figcaption>Frame sketch</figcaption></figure>
-  </div>
-</article>
+<section class="project" id="battery">
+  <h2>24V Supplemental Battery</h2>
+  <p class="meta">Powertrain Battery Engineer, Longhorn Racing Solar. September to December 2025.</p>
 
-<!-- 2027 -->
-<article id="harness2027">
-  <div class="band dark">
-    <div class="diagram">
-      <svg viewBox="0 0 400 110" role="img" aria-label="CarCAN cable chaining from board to board and ending at the battery box" font-family="Figtree, sans-serif">
-        <g fill="none" stroke="#fff" stroke-width="1.6"><rect x="2" y="30" width="80" height="44" rx="10"/><rect x="128" y="30" width="80" height="44" rx="10"/><rect x="254" y="18" width="142" height="68" rx="12" stroke-width="2.4"/></g>
-        <g stroke="#3d8bff" stroke-width="4"><line x1="82" y1="52" x2="128" y2="52"/><line x1="208" y1="52" x2="254" y2="52"/></g>
-        <g fill="#fff" font-size="13" text-anchor="middle"><text x="42" y="57">Board</text><text x="168" y="57">Board</text><text x="325" y="48" font-size="14" font-weight="600">Battery box</text><text x="325" y="67" font-size="11" fill="#b9c2c8">CarCAN ends here</text></g>
-      </svg>
-    </div>
-    <div class="wrap" style="padding-bottom:44px"><h2>2027 Vehicle Wire Harness <span class="tag">In progress</span></h2><p>Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present.</p></div>
+  <figure class="lead">
+    <button type="button" class="zoom"><img src="img/batt-cells-cad.jpg" alt="CAD model of NiMH cells seated in the 3D-printed frame" width="1224" height="854" style="max-height:420px;width:auto;margin:0 auto"></button>
+    <figcaption>The 20-cell frame I designed in SolidWorks.</figcaption>
+  </figure>
+
+  <div class="text">
+    <p>A 20S1P NiMH pack that powers the car's ignition sequence. The old pack had more than 50 overtemperature events. The new one has had close to none, and it's 34% smaller and 23% lighter.</p>
+    <h3>What I did</h3>
+    <ul class="did">
+      <li>Designed a protection PCB in KiCad with a 12 A fuse and two NTC thermistors</li>
+      <li>Simulated the protection circuit in LTspice before ordering boards</li>
+      <li>Checked trip response under load on an oscilloscope and looked for hot spots with a thermal camera</li>
+      <li>Redesigned the cell holder as a 3D-printed frame and spot-welded the final pack</li>
+    </ul>
   </div>
-  <div class="wrap detail">
-    <div class="cols">
-      <div>
-        <p class="lede">I'm leading the harness for the team's next car. The last car's enclosure pinouts had no pin for CAN cable shielding, so we tied shields together with soldered jumpers. This harness fixes that in the pinout itself.</p>
-        <h3>What I've done so far</h3>
-        <ul class="did">
-          <li>Modeled every connector on the car, grouped by enclosure, with pin names made consistent across all boards</li>
-          <li>Moved the boards to sealed Deutsch DTM connectors with keyed panel mounts on each enclosure</li>
-          <li>Combined power and CAN into one 4-conductor CarCAN cable that chains through the car and ends at the battery box</li>
-          <li>Wrote one 12-pin CAN pinout for every board, with dedicated shield pins</li>
-          <li>Gave every board a panel-mount USB-C so it can be flashed without opening the enclosure</li>
-          <li>Started routing it in EPLAN Harness proD, beginning with the battery box</li>
-        </ul>
+
+  <div class="shots two">
+    <figure class="contain"><button type="button" class="zoom"><img src="img/batt-protection-pcb.jpg" alt="Render of the protection PCB with fuse holder and connectors" width="1262" height="730" loading="lazy"></button><figcaption>Protection PCB</figcaption></figure>
+    <figure><button type="button" class="zoom"><img src="img/batt-printed-enclosure.jpg" alt="3D-printed battery enclosure on a workbench" width="1152" height="860" loading="lazy"></button><figcaption>Printed enclosure</figcaption></figure>
+    <figure class="contain"><button type="button" class="zoom"><img src="img/batt-enclosure-cad.jpg" alt="CAD model of the battery enclosure with mounts" width="1400" height="950" loading="lazy"></button><figcaption>Enclosure CAD</figcaption></figure>
+    <figure><button type="button" class="zoom"><img src="img/batt-frame-sketch.jpg" alt="Dimensioned sketch of the cell frame" width="1400" height="991" loading="lazy"></button><figcaption>Frame sketch</figcaption></figure>
+  </div>
+  <p class="links"><a href="https://cloud.wikis.utexas.edu/wiki/spaces/LHRSOLAR/pages/486510866/2024-2026+Custom+Supplemental+Battery">Project documentation</a></p>
+</section>
+
+<!-- 2027 harness -->
+<section class="project" id="harness2027">
+  <h2>2027 Vehicle Wire Harness <span class="badge">In progress</span></h2>
+  <p class="meta">Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present.</p>
+
+  <div class="text" style="margin-top:20px">
+    <p>I'm leading the harness for the team's next car. On the last car, the enclosure pinouts had no pin for CAN cable shielding, so we tied the shields together with soldered jumpers. This harness fixes that in the pinout and cuts down on one-off pinouts.</p>
+    <h3>What I've done so far</h3>
+    <ul class="did">
+      <li>Modeled every connector on the car, grouped by enclosure, with pin names made consistent across all boards</li>
+      <li>Moved the boards to sealed Deutsch DTM connectors with keyed panel mounts on each enclosure</li>
+      <li>Combined power and CAN into one 4-conductor CarCAN cable that chains through the car and ends at the battery box</li>
+      <li>Wrote one 12-pin CAN pinout for every board, with dedicated shield pins</li>
+      <li>Gave every board a panel-mount USB-C so it can be flashed without opening the enclosure</li>
+      <li>Started routing it in EPLAN Harness proD, beginning with the battery box</li>
+    </ul>
+  </div>
+
+  <div class="shots two">
+    <figure>
+      <div class="chain">
+        <svg viewBox="0 0 340 90" role="img" aria-label="CarCAN cable chaining from board to board and ending at the battery box">
+          <g fill="none" stroke="#1b1b1b" stroke-width="1.5">
+            <rect x="2" y="25" width="70" height="40" rx="3"/><rect x="112" y="25" width="70" height="40" rx="3"/><rect x="222" y="15" width="114" height="60" rx="3" stroke-width="2.5"/>
+          </g>
+          <g stroke="#1a55c4" stroke-width="4"><line x1="72" y1="45" x2="112" y2="45"/><line x1="182" y1="45" x2="222" y2="45"/></g>
+          <g font-size="13" fill="#1b1b1b" text-anchor="middle"><text x="37" y="50">Board</text><text x="147" y="50">Board</text><text x="279" y="41" font-weight="600">Battery box</text><text x="279" y="59" fill="#5e6166" font-size="12">chain ends here</text></g>
+        </svg>
       </div>
-      <aside class="facts">
-        <h3>Standard 12-pin CAN pinout</h3>
-        <table class="pinout">
-          <tr><th>Pin</th><th>In</th><th>Pin</th><th>Out</th></tr>
-          <tr><td>1</td><td>Power</td><td>5</td><td>Power</td></tr>
-          <tr><td>2</td><td>CAN_H</td><td>4</td><td>CAN_H</td></tr>
-          <tr><td>11</td><td>CAN_L</td><td>9</td><td>CAN_L</td></tr>
-          <tr><td>12</td><td>GND</td><td>8</td><td>GND</td></tr>
-          <tr><td>3, 10</td><td colspan="3">Cable shield, new for 2027</td></tr>
-          <tr><td>6, 7</td><td colspan="3">Board-specific signals</td></tr>
-        </table>
-      </aside>
-    </div>
+      <figcaption>CarCAN runs as one cable carrying power and CAN.</figcaption>
+    </figure>
+    <figure>
+      <table class="pinout">
+        <tr><th>Pin</th><th>In</th><th>Pin</th><th>Out</th></tr>
+        <tr><td>1</td><td>Power</td><td>5</td><td>Power</td></tr>
+        <tr><td>2</td><td>CAN_H</td><td>4</td><td>CAN_H</td></tr>
+        <tr><td>11</td><td>CAN_L</td><td>9</td><td>CAN_L</td></tr>
+        <tr><td>12</td><td>GND</td><td>8</td><td>GND</td></tr>
+        <tr><td>3, 10</td><td colspan="3">Cable shield (new for 2027)</td></tr>
+        <tr><td>6, 7</td><td colspan="3">Board-specific signals</td></tr>
+      </table>
+      <figcaption>The standard 12-pin DTM CAN pinout used on every board.</figcaption>
+    </figure>
   </div>
-  <div style="height:88px"></div>
-</article>
+</section>
 
 <!-- Integra -->
-<article id="integra">
-  <div class="wrap gallery" style="padding-top:0;padding-bottom:0">
-    <figure class="s6"><button type="button" class="zoom"><img src="img/integra-green.jpg" alt="Green 1994 Acura Integra parked in a driveway" width="530" height="358"></button></figure>
-    <figure class="s6"><button type="button" class="zoom"><img src="img/integra-black.jpg" alt="Black 1994 Acura Integra in a parking lot" width="570" height="420"></button></figure>
+<section class="project" id="integra">
+  <h2>1994 Acura Integra</h2>
+  <p class="meta">Personal project. June 2023 to present.</p>
+
+  <div class="shots two" style="margin-top:20px">
+    <figure><button type="button" class="zoom"><img src="img/integra-green.jpg" alt="Green 1994 Acura Integra parked in a driveway" width="530" height="358"></button></figure>
+    <figure><button type="button" class="zoom"><img src="img/integra-black.jpg" alt="Black 1994 Acura Integra in a parking lot" width="570" height="420"></button></figure>
   </div>
-  <div class="wrap detail">
-    <div class="title-plain"><h2>1994 Acura Integra</h2><p>Personal project. June 2023 to present.</p></div>
-    <div class="cols">
-      <div>
-        <p class="lede">My own car, with a 30-year-old harness and very little documentation. Most electrical work on it starts with tracing circuits by hand before cutting anything.</p>
-        <h3>What I did</h3>
-        <ul class="did">
-          <li>Spliced and heat-shrank the adapter harness for a CarPlay head unit</li>
-          <li>Re-grounded chassis circuits</li>
-          <li>Installed a backup camera, routing the video lines through the cabin and tapping power from the reverse light so it only runs in reverse</li>
-          <li>Installed adjustable coilovers and new front CV axles</li>
-        </ul>
-      </div>
-      <aside>
-        <figure class="shot"><button type="button" class="zoom"><img src="img/integra-dash.jpg" alt="Integra interior with the dashboard removed, exposing the wiring" width="536" height="288" loading="lazy"></button><figcaption>Dash out for harness work</figcaption></figure>
-        <p><a class="pill dark" href="https://docs.google.com/presentation/d/1vOKVWTIH-oTrMOCYquteOnTuEqKrI6PmVh7QiBACXS4/edit?slide=id.p#slide=id.p">Full write-up</a></p>
-      </aside>
+
+  <div class="text">
+    <p style="margin-top:20px">My own car, with a 30-year-old harness and very little documentation. Most electrical work on it starts with tracing circuits by hand before cutting anything.</p>
+    <h3>What I did</h3>
+    <ul class="did">
+      <li>Spliced and heat-shrank the adapter harness for a CarPlay head unit</li>
+      <li>Re-grounded chassis circuits</li>
+      <li>Installed a backup camera, routing the video lines through the cabin and tapping power from the reverse light so it only runs in reverse</li>
+      <li>Installed adjustable coilovers and new front CV axles</li>
+    </ul>
+  </div>
+
+  <div class="shots two">
+    <figure><button type="button" class="zoom"><img src="img/integra-dash.jpg" alt="Integra interior with the dashboard removed, exposing the wiring" width="536" height="288" loading="lazy"></button><figcaption>Dash out for harness work</figcaption></figure>
+  </div>
+  <p class="links"><a href="https://docs.google.com/presentation/d/1vOKVWTIH-oTrMOCYquteOnTuEqKrI6PmVh7QiBACXS4/edit?slide=id.p#slide=id.p">Full write-up</a></p>
+</section>
+
+<!-- Experience -->
+<section class="plain" id="experience">
+  <h2>Experience</h2>
+  <div class="text">
+    <div class="job">
+      <h3>Wire Harness Project Manager and Power Systems Engineer</h3>
+      <p class="meta">Longhorn Racing Solar, May 2026 to present</p>
+      <ul class="did">
+        <li>Own the vehicle wire harness in EPLAN, including the high voltage and data acquisition harnesses; cut 5 lbs of harness mass</li>
+        <li>Lead the Segment Monitoring Board from schematic and layout through assembly and bring-up</li>
+        <li>Teach newer members EPLAN and crimping, and settle board-to-harness pinouts with other teams before boards are ordered</li>
+        <li>Wrote a thread-safe, mutex-protected RGB LED driver in C for the team's STM32 FreeRTOS firmware, tested with three tasks writing to one LED at once</li>
+      </ul>
+    </div>
+    <div class="job">
+      <h3>Powertrain Engineer</h3>
+      <p class="meta">Longhorn Racing Solar, September 2025 to May 2026</p>
+      <ul class="did">
+        <li>Designed and validated the protection system for the supplemental battery</li>
+        <li>Integrated the 288-cell 32S9P traction pack into its carbon fiber enclosure and helped spot-weld its interconnects, then measured parallel-group voltages to catch bad welds</li>
+        <li>Iterated enclosure layouts for airflow around high-current boards with the Enclosures team</li>
+      </ul>
+    </div>
+    <div class="job">
+      <h3>Engineering Intern</h3>
+      <p class="meta">023Voting.org, June to July 2023</p>
+      <ul class="did">
+        <li>On a six-person team, built a voter resource website in WordPress and compiled data on more than 50 Austin government leaders</li>
+      </ul>
     </div>
   </div>
-  <div style="height:64px"></div>
-</article>
+</section>
+
+<!-- Skills -->
+<section class="plain" id="skills">
+  <h2>Skills and education</h2>
+  <dl class="skills">
+    <dt>Education</dt><dd>BS Electrical and Computer Engineering, UT Austin, May 2028. Coursework in circuit theory, linear systems and signals, embedded systems, and software design.</dd>
+    <dt>Hardware</dt><dd>Schematic capture, PCB layout, wire harness design, BMS, bring-up, validation, root cause analysis</dd>
+    <dt>Software tools</dt><dd>KiCad, Altium Designer, EPLAN Harness proD, EPLAN P8, SolidWorks, Fusion 360, LTspice</dd>
+    <dt>Lab and shop</dt><dd>Oscilloscope, multimeter, bench supply, thermal camera, PCB assembly, soldering, crimping, spot welding, 3D printing, TIG welding</dd>
+    <dt>Programming</dt><dd>C, C++, Python, JavaScript, C#, HTML, CSS, STM32 HAL, FreeRTOS, Git</dd>
+  </dl>
+</section>
 
 </main>
 
-<section class="wash" id="experience">
-  <div class="wrap">
-    <h2>Experience</h2>
-    <div class="jobs">
-      <div class="job">
-        <h3>Wire Harness Project Manager and Power Systems Engineer</h3>
-        <p class="when">Longhorn Racing Solar, May 2026 to present</p>
-        <ul>
-          <li>Own the vehicle wire harness in EPLAN, including the high voltage and data acquisition harnesses; cut 5 lbs of harness mass</li>
-          <li>Lead the Segment Monitoring Board from schematic through assembly and bring-up</li>
-          <li>Teach newer members EPLAN and crimping, and settle board-to-harness pinouts with other teams before boards are ordered</li>
-          <li>Wrote a thread-safe, mutex-protected RGB LED driver in C for the team's STM32 FreeRTOS firmware</li>
-        </ul>
-      </div>
-      <div class="job">
-        <h3>Powertrain Engineer</h3>
-        <p class="when">Longhorn Racing Solar, September 2025 to May 2026</p>
-        <ul>
-          <li>Designed and validated the protection system for the supplemental battery</li>
-          <li>Integrated the 288-cell 32S9P traction pack into its carbon fiber enclosure and helped spot-weld its interconnects, then measured parallel-group voltages to catch bad welds</li>
-          <li>Iterated enclosure layouts for airflow around high-current boards with the Enclosures team</li>
-        </ul>
-      </div>
-      <div class="job">
-        <h3>Engineering Intern</h3>
-        <p class="when">023Voting.org, June to July 2023</p>
-        <ul>
-          <li>On a six-person team, built a voter resource website in WordPress and compiled data on more than 50 Austin government leaders</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2 id="skills" style="margin-top:72px">Skills and education</h2>
-    <div class="skills">
-      <div><h3>Education</h3><p>BS Electrical and Computer Engineering, UT Austin, May 2028. Coursework in circuit theory, linear systems and signals, embedded systems, and software design.</p></div>
-      <div><h3>Hardware</h3><p>Schematic capture, PCB layout, wire harness design, BMS, bring-up, validation, root cause analysis</p></div>
-      <div><h3>Software tools</h3><p>KiCad, Altium Designer, EPLAN Harness proD, EPLAN P8, SolidWorks, Fusion 360, LTspice</p></div>
-      <div><h3>Lab and shop</h3><p>Oscilloscope, multimeter, bench supply, thermal camera, PCB assembly, soldering, crimping, spot welding, 3D printing, TIG welding</p></div>
-      <div style="grid-column:1/-1"><h3>Programming</h3><p>C, C++, Python, JavaScript, C#, HTML, CSS, STM32 HAL, FreeRTOS, Git</p></div>
-    </div>
-  </div>
-</section>
-
 <footer>
-  <div class="wrap">
-    <h2>I'm looking for Summer 2027 internships in electrical hardware, wire harnesses and power systems.</h2>
-    <div class="ctas">
-      <a class="pill light" href="mailto:leodblock@gmail.com">leodblock@gmail.com</a>
-      <a class="pill ghost" href="https://www.linkedin.com/in/leo-block">LinkedIn</a>
-    </div>
-    <p class="small">Leo Block, Austin, Texas</p>
-  </div>
+  <div class="page">Looking for Summer 2027 internships in electrical hardware, wire harness, and power systems. Email me at <a href="mailto:leodblock@gmail.com">leodblock@gmail.com</a>.</div>
 </footer>
 
-<dialog class="lb" id="lb"><button type="button" class="pill light">Close</button><img alt=""><p></p></dialog>
+<dialog class="lb" id="lb"><button type="button">Close</button><img alt=""><p></p></dialog>
 <script>
 (function(){
   var lb=document.getElementById('lb'),img=lb.querySelector('img'),cap=lb.querySelector('p');
@@ -452,7 +386,7 @@ dialog.lb .pill{position:fixed;top:14px;right:14px}
       img.src=i.src;img.alt=i.alt;cap.textContent=fc?fc.textContent:'';lb.showModal();
     });
   });
-  lb.querySelector('.pill').addEventListener('click',function(){lb.close()});
+  lb.querySelector('button').addEventListener('click',function(){lb.close()});
   lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
 })();
 </script>
