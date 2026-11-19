@@ -239,3 +239,14 @@ footer{padding:2rem 0 3rem;color:var(--ink-soft);font-size:.9rem;font-stretch:85
 .card .tx{padding:1rem 1.15rem 1.2rem}
 .card .nm{display:block;font-weight:800;font-size:1.3rem;line-height:1.15;letter-spacing:-.01em}
 .card .mt{display:block;margin-top:.3rem;color:var(--ink-soft);font-stretch:85%;font-size:.95rem}
+
+/* longer write-ups */
+.body h3{margin:2rem 0 .55rem;font-weight:800;font-size:1.2rem;font-stretch:100%;letter-spacing:-.01em}
+.body h3:first-child{margin-top:0}
+.body p a{text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:3px}
+.mx{border-collapse:collapse;margin:0 0 1.05rem;font-size:.95rem;min-width:16rem}
+.mx caption{text-align:left;color:var(--ink-soft);font-stretch:80%;font-size:.85rem;padding-bottom:.4rem}
+.mx th{text-align:left;font-weight:600;font-stretch:80%;color:var(--ink-soft);padding:.3rem .75rem .3rem 0;border-bottom:2px solid var(--ink)}
+.mx td{padding:.3rem .75rem .3rem 0;border-bottom:1px solid var(--rule)}
+.mx td:last-child{font-weight:800;font-variant-numeric:tabular-nums}
+.mx tr:nth-child(2) td{color:var(--c)}

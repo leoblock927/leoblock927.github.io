@@ -37,12 +37,20 @@
     </div>
     <div class="body">
       <div>
-        <p>I'm leading the harness for the team's next car, built around its new 2027 boards. The last car's enclosure pinouts had no pin for CAN cable shielding, so shields were tied together with soldered jumpers. I wanted this harness to fix that at the pinout level and cut down on one-off pinouts.</p>
-        <p>Before routing anything, I modeled every connector on the car. Each board is grouped by its enclosure, its connectors come from the board's own design files, and pin names are normalized to one format across every board, so CAN, power, and ground mean the same thing everywhere.</p>
-        <p>From that model I set the architecture. Boards move to sealed Deutsch DTM connectors, with keyed panel mounts on each enclosure. CarCAN runs as a single 4-conductor cable carrying power and CAN, chaining enclosure to enclosure and ending at the battery box. Every board uses the same 12-pin CAN pinout with dedicated shield pins, and gets a panel-mount USB-C so it can be flashed without opening its enclosure.</p>
-        <p>LV power and supply pins get doubled wires to double the panel mount's current rating. The harness also covers the new lighting architecture, the charger path from wall AC through an off-car Elcon enclosure to the battery box, and both motor controller options.</p>
-        <p>I drew the schematic in harness.design and I'm now routing it in EPLAN Harness proD, starting with the battery box out to its panel mounts. I'm also working the BOM with an outside parts donor. Manufacturing starts in January, with the critical harness on the car in February.</p>
-        <p>On the firmware side, I wrote a thread-safe, mutex-protected RGB LED driver in embedded C for the team's STM32 FreeRTOS firmware so multiple tasks can share status LEDs, and stress-tested it with three tasks writing to one LED at once. The team now flashes it first on every new board to confirm the MCU has power and can be programmed.</p>
+        <h3>The problem</h3>
+        <p>I'm leading the harness for the team's next car. The last car's enclosure pinouts had no pin for CAN cable shielding, so shields were tied together with soldered jumpers and Wago connectors. Internal harnessing was also painful because different connector families numbered their pins differently. I wanted this harness to fix both at the pinout level and cut down on one-off pinouts.</p>
+        <h3>Modeling every connector</h3>
+        <p>Before routing anything, I modeled every connector on the car as a nail board in harness.design. Each board sits in a group for its enclosure, its connectors come straight from the board's own design files, and pin names are normalized to one format across every board (CarCAN_H, CarCAN_L, CarCAN_SHIELD, GND, 12V), so CAN, power, and ground mean the same thing everywhere.</p>
+        <h3>Architecture</h3>
+        <p>The new Rev B boards move from Nano-Fit connectors to sealed Deutsch DTM connectors, with keyed panel mounts on each enclosure (keys A, B, C, D in order when an enclosure has more than one). CarCAN runs as a single 4-conductor cable carrying power and CAN, chaining enclosure to enclosure and ending at the battery box. Every board uses the same 12-pin CAN pinout with two dedicated shield pins, and every board gets a panel-mount USB-C so it can be flashed without opening its enclosure.</p>
+        <p>On the battery box, LV power and supply pins use two wires each, which doubles the panel mount's current rating. Inside, four SMBs and four thermistor flex boards sit in a segment housing with the BPS Leader and LV controller.</p>
+        <h3>Lighting, charging, and motor</h3>
+        <p>The harness covers the team's new lighting architecture: a dedicated LightingCAN runs from the driver interface board to a new canopy board, and every light uses the same pinout (12V, GND, 12V PWM, shield). The charger path runs from wall AC to an off-car Elcon enclosure, through an on-car charger enclosure, to the battery box.</p>
+        <p>It also carries both motor controller options the team is weighing, with an Amphenol ePower-Lite panel mount for the DC bus and 6 AWG lugs for the high-current connections.</p>
+        <h3>Where it stands</h3>
+        <p>The schematic is done in harness.design and I'm now routing it in EPLAN Harness proD, starting with the battery box out to its panel mounts. I'm working the BOM with an outside parts donor: I fixed every TBD and wrong part number and will send final lengths once routing is done. Manufacturing starts in January, with the critical harness on the car in February.</p>
+        <h3>Firmware</h3>
+        <p>I also wrote a thread-safe, mutex-protected RGB LED driver in embedded C for the team's STM32 FreeRTOS firmware so multiple tasks can share status LEDs, and stress-tested it with three tasks writing to one LED at once. The team now flashes it first on every new board to confirm the MCU has power and can be programmed.</p>
       </div>
       <div>
         <figure class="fig">
@@ -76,6 +84,45 @@
           <dt>Firmware</dt><dd>STM32, FreeRTOS, embedded C</dd>
           <dt>Tools</dt><dd>harness.design, EPLAN Harness proD</dd>
         </dl>
+        <figure class="fig" style="margin-top:1.75rem">
+          <svg viewBox="0 0 340 150" role="img" aria-label="Charger path from wall AC through an off-car Elcon enclosure and an on-car charger enclosure to the battery box">
+            <rect class="box" x="6" y="46" width="62" height="48" rx="6"/>
+            <rect class="box" x="90" y="46" width="70" height="48" rx="6" stroke-dasharray="4 3"/>
+            <rect class="box" x="182" y="46" width="70" height="48" rx="6"/>
+            <rect class="box" x="274" y="46" width="60" height="48" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <path class="route" stroke-width="4" d="M68,70 H90 M160,70 H182 M252,70 H274"/>
+            <path class="fpulse" pathLength="1" d="M68,70 H274"/>
+            <text x="37" y="66" text-anchor="middle">Wall</text>
+            <text x="37" y="82" text-anchor="middle">AC</text>
+            <text x="125" y="66" text-anchor="middle">Elcon</text>
+            <text x="125" y="82" text-anchor="middle" class="soft">off car</text>
+            <text x="217" y="66" text-anchor="middle">Charger</text>
+            <text x="217" y="82" text-anchor="middle" class="soft">on car</text>
+            <text x="304" y="66" text-anchor="middle">Battery</text>
+            <text x="304" y="82" text-anchor="middle">box</text>
+            <text x="6" y="130" class="soft">Dashed: lives off the car</text>
+          </svg>
+          <figcaption><span>Charger path</span><span>Not to scale</span></figcaption>
+        </figure>
+        <figure class="fig" style="margin-top:1.25rem">
+          <svg viewBox="0 0 340 150" role="img" aria-label="LightingCAN from the driver interface board to the canopy board, each driving its own lights">
+            <rect class="box" x="6" y="40" width="104" height="48" rx="6"/>
+            <rect class="box" x="230" y="40" width="104" height="48" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <path class="route" stroke-width="4" d="M110,64 H230"/>
+            <path class="fpulse" pathLength="1" d="M110,64 H230"/>
+            <text x="58" y="60" text-anchor="middle">Driver</text>
+            <text x="58" y="76" text-anchor="middle">interface</text>
+            <text x="282" y="60" text-anchor="middle">Canopy</text>
+            <text x="282" y="76" text-anchor="middle">board</text>
+            <text x="170" y="54" text-anchor="middle" class="soft">LightingCAN</text>
+            <path class="route" stroke-width="2.5" d="M33,88 V110 M58,88 V110 M83,88 V110 M257,88 V110 M282,88 V110 M307,88 V110"/>
+            <text x="58" y="128" text-anchor="middle" class="soft">headlight</text>
+            <text x="58" y="143" text-anchor="middle" class="soft">turn signals</text>
+            <text x="282" y="128" text-anchor="middle" class="soft">brake lights</text>
+            <text x="282" y="143" text-anchor="middle" class="soft">BPS strobe</text>
+          </svg>
+          <figcaption><span>New lighting architecture</span><span>Same pinout on every light</span></figcaption>
+        </figure>
       </div>
     </div>
   </div>
