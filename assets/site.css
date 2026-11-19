@@ -250,3 +250,28 @@ footer{padding:2rem 0 3rem;color:var(--ink-soft);font-size:.9rem;font-stretch:85
 .mx td{padding:.3rem .75rem .3rem 0;border-bottom:1px solid var(--rule)}
 .mx td:last-child{font-weight:800;font-variant-numeric:tabular-nums}
 .mx tr:nth-child(2) td{color:var(--c)}
+
+/* interleaved project pages */
+.prose{max-width:44rem}
+.prose p{margin:0 0 1.05rem}
+.prose h3{margin:0 0 .55rem;font-weight:800;font-size:clamp(1.3rem,2.4vw,1.6rem);font-stretch:105%;letter-spacing:-.015em}
+.prose p a{text-decoration-color:var(--c);text-decoration-thickness:2px;text-underline-offset:3px}
+.prose .mx{margin-top:.25rem}
+.sec{margin-top:clamp(2.75rem,6vw,4rem)}
+.sec > .gal,.sec > .figrow{margin:clamp(1.25rem,3vw,1.75rem) 0}
+.sec > .gal:last-child,.sec > .figrow:last-child{margin-bottom:0}
+.sec > .prose + .prose{margin-top:0}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:12px}
+.glance{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3rem);margin-top:clamp(1.75rem,4vw,2.75rem);align-items:start}
+.glance .specs{margin-top:0}
+.glance .pin{margin-top:0;margin-bottom:1.25rem}
+.glinks{margin-top:.5rem}
+.pin.bb td:nth-child(odd){width:3rem}
+@media (max-width:820px){.glance{grid-template-columns:minmax(0,1fr)}}
+/* home project sections */
+.h2link{text-decoration:none}
+.h2link:hover{color:var(--c)}
+.more.read{margin-top:.5rem}
+.sec > .gal:not(:has(.grow:nth-child(2))):has(.grow > .ph:only-child){max-width:44rem}
+.sec > .figrow:has(> .fig:only-child){max-width:30rem}
+.sec > .figrow:has(> .fig:only-child) .fig{max-width:100%}

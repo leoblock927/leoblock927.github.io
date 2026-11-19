@@ -35,27 +35,10 @@
       <div><b>240 mA</b><span>max passive balancing current</span></div>
       <div><b>3</b><span>isolated ground domains</span></div>
     </div>
-    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.048"><button type="button" class="zoom" aria-label="Enlarge: KiCad PCB layout of the Segment Monitoring Board"><img src="../assets/img/smb-1.jpg" alt="KiCad PCB layout of the Segment Monitoring Board" loading="lazy"></button><figcaption>PCB layout, Rev A</figcaption></figure><figure class="ph light" style="--r:1.449"><button type="button" class="zoom" aria-label="Enlarge: KiCad schematic of the Segment Monitoring Board"><img src="../assets/img/smb-2.jpg" alt="KiCad schematic of the Segment Monitoring Board" loading="lazy"></button><figcaption>Full schematic in KiCad</figcaption></figure><figure class="ph" style="--r:1.333"><button type="button" class="zoom" aria-label="Enlarge: Oscilloscope capture of a successful wake command on the daisy chain"><img src="../assets/img/smb-3.jpg" alt="Oscilloscope capture of a successful wake command on the daisy chain" loading="lazy"></button><figcaption>Successful wake</figcaption></figure></div><div class="grow"><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain"><img src="../assets/img/smb-4.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain" loading="lazy"></button><figcaption>Bench test: BPS Leader waking the SMB</figcaption></figure><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench"><img src="../assets/img/smb-5.jpg" alt="Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench" loading="lazy"></button><figcaption>Full BPS integration: cell and thermistor readings</figcaption></figure></div></div>
-    <div class="body">
-      <div>
-        <h3>What it does</h3>
-        <p>The SMB is the car's cell monitoring unit. Each board reads 8 cell voltages and 8 thermistors for one 8S segment of the pack (33.6 V max) and passively balances the cells. Four of them sit in the battery box, chained in a ring back to a BQ79600 bridge on the separate BPS Leader board, which decides when the pack is unsafe and opens the contactors.</p>
-        <p>It's built around a TI BQ79616 analog front end. I own the hardware: schematic, layout, assembly, and bring-up. The firmware that talks to it is written by teammates.</p>
-        <h3>Design</h3>
-        <p>I drew the schematic and laid out the PCB in KiCad, then took it through many rounds of board review with teammates before ordering. I sized the balancing resistors for up to 240 mA. My first pass targeted 200 mA with 8.2 Ω parts, and when I reran the math at a full 4.2 V cell instead of 3.6 V nominal the numbers moved, so I re-specified the parts before anything was fabricated.</p>
-        <p>Every cell and bus bar sense line is RC filtered so the measurements stay clean: 0.47 µF X7R caps on the VC and CB pins, 400 Ω series resistors on the bus bar inputs, and a 10 nF, 100 V cap on the BAT pin. An MMBT5551 NPN handles the 80 V rail.</p>
-        <h3>Isolation and communication</h3>
-        <p>The board is split into three ground domains (AVSS, DVSS, CVSS) so communication noise stays off the cell measurements. Boards talk to each other in a ring, with transformer isolation on both daisy-chain ports and PESD5V0L2BT ESD protection on the COMLP and COMLN lines. I checked that interface line by line against TI's application note, not just the datasheet, since an isolated link is easy to get subtly wrong and hard to fix after fabrication.</p>
-        <p>I left the NFAULT pins unconnected on purpose. Fault status already travels through the daisy-chain protocol to the bridge's FAULT_SUMMARY register, so a separate fault wire would only add another thing to route and break.</p>
-        <h3>Bring-up and testing</h3>
-        <p>I assembled Rev A in-house so we could iterate faster. For first power-on I used a 28.8 V bench supply in place of a battery segment and probed the daisy chain with a scope. The capture above shows the wake command from the Leader's BQ79600 reaching the SMB and waking the BQ79616, with clean communication bursts across the isolation barrier.</p>
-        <p>From there I moved to hardware-in-the-loop tests on a cell simulator before connecting real cells. At first the cell readings were off. I traced it to the bottom cell tap (V0) not being tied to AVSS, so the front end had no reference for cell 1. After that fix every tap read correctly, and the one reading still slightly high turned out to be the simulator's resistor ladder, not the board.</p>
-        <p>Then I tested the full BPS setup (SMB, Leader MCU, and HV carrier) together, since interface faults only show up in-system. When the bridge wouldn't wake, I narrowed it down to the Leader's 3.3 V rail by checking current, continuity, and voltage at each hop, and caught along the way that I had been probing the wrong 3.3 V net. As of November 2026, two SMBs are chained to the Leader and reporting, with temperatures checked against a resistor harness that mimics the thermistors.</p>
-        <p>I also fixed the repo so the shared KiCad library resolves on every teammate's machine. A Git submodule path pointed at the wrong folder, which broke the symbols for anyone cloning it fresh.</p>
-        <a class="more" href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard" target="_blank" rel="noopener">View the KiCad project on GitHub &#8599;</a>
-      </div>
-      <div>
-        <figure class="fig">
+  </div>
+  <div class="wrap">
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain"><img src="../assets/img/smb-4.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain" loading="lazy"></button><figcaption>Bench test: BPS Leader waking the SMB</figcaption></figure><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench"><img src="../assets/img/smb-5.jpg" alt="Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench" loading="lazy"></button><figcaption>Full BPS integration: cell and thermistor readings</figcaption></figure></div></div>
+    <div class="glance"><figure class="fig">
           <svg viewBox="0 0 320 265" role="img" aria-label="Daisy-chain ring from the BPS Leader board through four segment monitoring boards and back">
             <path class="route" stroke-width="3" d="M100,123 H160 V35 H210 M255,55 V80 M255,120 V145 M255,185 V210 M210,230 H160 V147 H100"/>
             <path class="route" stroke-width="3" opacity=".45" d="M100,131 H168 V43 H210 M263,55 V80 M263,120 V145 M263,185 V210 M210,222 H168 V139 H100"/>
@@ -73,8 +56,7 @@
             <text x="258" y="235" text-anchor="middle">SMB</text>
           </svg>
           <figcaption><span>Isolated daisy-chain ring, four SMBs</span><span>Hover to send a frame</span></figcaption>
-        </figure>
-        <dl class="specs">
+        </figure><div><dl class="specs">
           <dt>AFE</dt><dd>TI BQ79616</dd>
           <dt>Segment</dt><dd>8S, 33.6 V max</dd>
           <dt>Balancing</dt><dd>Passive, up to 240 mA</dd>
@@ -82,8 +64,13 @@
           <dt>Isolation</dt><dd>Transformer, both ports</dd>
           <dt>Validation</dt><dd>Cell simulator HIL, oscilloscope, full BPS integration</dd>
           <dt>Tools</dt><dd>KiCad, Git</dd>
-        </dl>
-        <figure class="fig" style="margin-top:1.75rem">
+        </dl><div class="glinks"><a class="more" href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard" target="_blank" rel="noopener">View the KiCad project on GitHub &#8599;</a></div></div></div>
+    <section class="sec"><div class="prose"><h3>What it does</h3><p>The SMB is the car's cell monitoring unit. Each board reads 8 cell voltages and 8 thermistors for one 8S segment of the pack (33.6 V max) and passively balances the cells. Four of them sit in the battery box, chained in a ring back to a BQ79600 bridge on the separate BPS Leader board, which decides when the pack is unsafe and opens the contactors.</p><p>It's built around a TI BQ79616 analog front end. I own the hardware: schematic, layout, assembly, and bring-up. The firmware that talks to it is written by teammates.</p></div>
+<div class="gal"><div class="grow"><figure class="ph" style="--r:1.048"><button type="button" class="zoom" aria-label="Enlarge: KiCad PCB layout of the Segment Monitoring Board"><img src="../assets/img/smb-1.jpg" alt="KiCad PCB layout of the Segment Monitoring Board" loading="lazy"></button><figcaption>PCB layout, Rev A</figcaption></figure><figure class="ph light" style="--r:1.034"><button type="button" class="zoom" aria-label="Enlarge: Front of the Segment Monitoring Board with every part placed, from the interactive BOM"><img src="../assets/img/smb-6.jpg" alt="Front of the Segment Monitoring Board with every part placed, from the interactive BOM" loading="lazy"></button><figcaption>Front, every part placed</figcaption></figure><figure class="ph light" style="--r:1.036"><button type="button" class="zoom" aria-label="Enlarge: Back of the Segment Monitoring Board showing the silkscreen art"><img src="../assets/img/smb-7.jpg" alt="Back of the Segment Monitoring Board showing the silkscreen art" loading="lazy"></button><figcaption>Back side silkscreen</figcaption></figure></div></div></section>
+<section class="sec"><div class="prose"><h3>Design</h3><p>I drew the schematic and laid out the PCB in KiCad, then took it through many rounds of board review with teammates before ordering. I sized the balancing resistors for up to 240 mA. My first pass targeted 200 mA with 8.2 Ω parts, and when I reran the math at a full 4.2 V cell instead of 3.6 V nominal the numbers moved, so I re-specified the parts before anything was fabricated.</p><p>Every cell and bus bar sense line is RC filtered so the measurements stay clean: 0.47 µF X7R caps on the VC and CB pins, 400 Ω series resistors on the bus bar inputs, and a 10 nF, 100 V cap on the BAT pin. An MMBT5551 NPN handles the 80 V rail.</p></div>
+<div class="gal"><div class="grow"><figure class="ph light" style="--r:1.449"><button type="button" class="zoom" aria-label="Enlarge: KiCad schematic of the Segment Monitoring Board"><img src="../assets/img/smb-2.jpg" alt="KiCad schematic of the Segment Monitoring Board" loading="lazy"></button><figcaption>Full schematic in KiCad</figcaption></figure></div></div></section>
+<section class="sec"><div class="prose"><h3>Isolation and communication</h3><p>The board is split into three ground domains (AVSS, DVSS, CVSS) so communication noise stays off the cell measurements. Boards talk to each other in a ring, with transformer isolation on both daisy-chain ports and PESD5V0L2BT ESD protection on the COMLP and COMLN lines. I checked that interface line by line against TI's application note, not just the datasheet, since an isolated link is easy to get subtly wrong and hard to fix after fabrication.</p><p>I left the NFAULT pins unconnected on purpose. Fault status already travels through the daisy-chain protocol to the bridge's FAULT_SUMMARY register, so a separate fault wire would only add another thing to route and break.</p></div>
+<div class="figrow"><figure class="fig">
           <svg viewBox="0 0 320 200" role="img" aria-label="Three ground domains on the SMB: analog for cell sensing, digital for the core, and communication behind transformer isolation">
             <rect class="box" x="10" y="20" width="92" height="150" rx="8"/>
             <rect class="box" x="114" y="20" width="92" height="150" rx="8"/>
@@ -95,7 +82,7 @@
             <text x="264" y="44" text-anchor="middle">CVSS</text>
             <text x="264" y="62" text-anchor="middle" class="soft">daisy chain</text>
             <path class="route" stroke-width="3" d="M30,150 V100 M45,150 V100 M60,150 V100 M75,150 V100 M90,150 V100"/>
-            <text x="56" y="92" text-anchor="middle" class="soft">8 cells, RC filtered</text>
+            <text x="56" y="92" text-anchor="middle" class="soft">8 cell taps</text>
             <rect x="140" y="105" width="40" height="40" rx="4" fill="var(--c)" opacity=".85"/>
             <text x="160" y="160" text-anchor="middle" class="soft">BQ79616</text>
             <path class="route" stroke-width="3" d="M180,125 H240"/>
@@ -105,9 +92,11 @@
             <path class="fpulse" pathLength="1" d="M60,125 H306"/>
           </svg>
           <figcaption><span>Three ground domains</span><span>Comms noise stays off the cells</span></figcaption>
-        </figure>
-      </div>
-    </div>
+        </figure></div></section>
+<section class="sec"><div class="prose"><h3>Bring-up and testing</h3><p>I assembled Rev A in-house so we could iterate faster. For first power-on I used a 28.8 V bench supply in place of a battery segment and probed the daisy chain with a scope. The scope capture shows the wake command from the Leader's BQ79600 reaching the SMB and waking the BQ79616, with clean communication bursts across the isolation barrier.</p><p>From there I moved to hardware-in-the-loop tests on a cell simulator before connecting real cells. At first the cell readings were off. I traced it to the bottom cell tap (V0) not being tied to AVSS, so the front end had no reference for cell 1. After that fix every tap read correctly, and the one reading still slightly high turned out to be the simulator's resistor ladder, not the board.</p></div>
+<div class="gal"><div class="grow"><figure class="ph" style="--r:1.333"><button type="button" class="zoom" aria-label="Enlarge: Oscilloscope capture of a successful wake command on the daisy chain"><img src="../assets/img/smb-3.jpg" alt="Oscilloscope capture of a successful wake command on the daisy chain" loading="lazy"></button><figcaption>Successful wake</figcaption></figure></div></div>
+<div class="prose"><p>Then I tested the full BPS setup (SMB, Leader MCU, and HV carrier) together, since interface faults only show up in-system. When the bridge wouldn't wake, I narrowed it down to the Leader's 3.3 V rail by checking current, continuity, and voltage at each hop, and caught along the way that I had been probing the wrong 3.3 V net. As of November 2026, two SMBs are chained to the Leader and reporting, with temperatures checked against a resistor harness that mimics the thermistors.</p><p>I also fixed the repo so the shared KiCad library resolves on every teammate's machine. A Git submodule path pointed at the wrong folder, which broke the symbols for anyone cloning it fresh.</p></div></section>
+<section class="sec"><div class="prose"><h3>What I took from it</h3><p>Bring up in layers: power first, then communication, then simulated cells, then the full system. Each layer only gets tested once the one under it is proven, so when something breaks I already know where to look.</p><p>Check references and grounds before anything else, and separate what the board is doing from what the test fixture is doing before blaming either one. Both lessons came straight out of this bring-up.</p></div></section>
   </div>
 </article>
 

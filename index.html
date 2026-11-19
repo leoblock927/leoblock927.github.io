@@ -9,10 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
-<script>
-(function(){var m={'#smb':'smb/','#telemetry':'data-acquisition-harness/','#battery':'supplemental-battery/','#harness2027':'vehicle-harness-2027/','#integra':'integra/'};
-if(m[location.hash]) location.replace(m[location.hash]);})();
-</script>
 </head>
 <body>
 
@@ -33,15 +29,15 @@ if(m[location.hash]) location.replace(m[location.hash]);})();
     <p class="lede"><b>Electrical and Computer Engineering at UT Austin.</b> I run wire harness design for Longhorn Racing Solar and build battery monitoring hardware for the car's pack.</p>
   </div>
 
-  <div class="loom" aria-label="Projects">
+  <div class="loom" id="projects" aria-label="Projects">
     <svg aria-hidden="true"></svg>
     <div class="wrap">
       <ol class="ends">
-        <li style="--c:var(--hv)" data-i="0"><a href="smb/"><span class="plug"></span><span class="txt"><span class="name">Segment Monitoring Board</span><span class="meta">BMS hardware, 2026 to now</span></span></a></li>
-        <li style="--c:var(--can)" data-i="1"><a href="data-acquisition-harness/"><span class="plug"></span><span class="txt"><span class="name">Data Acquisition Wire Harness</span><span class="meta">14 boards, 65 ft, 2026</span></span></a></li>
-        <li style="--c:var(--batt)" data-i="2"><a href="supplemental-battery/"><span class="plug"></span><span class="txt"><span class="name">24V Supplemental Battery</span><span class="meta">Pack and protection PCB, 2025</span></span></a></li>
-        <li style="--c:var(--sig)" data-i="3"><a href="vehicle-harness-2027/"><span class="plug"></span><span class="txt"><span class="name">2027 Vehicle Wire Harness</span><span class="meta">Architecture and firmware, in progress</span></span></a></li>
-        <li style="--c:var(--auto)" data-i="4"><a href="integra/"><span class="plug"></span><span class="txt"><span class="name">1994 Acura Integra</span><span class="meta">My own car, 2023 to now</span></span></a></li>
+        <li style="--c:var(--hv)" data-i="0"><a href="#smb"><span class="plug"></span><span class="txt"><span class="name">Segment Monitoring Board</span><span class="meta">BMS hardware, 2026 to now</span></span></a></li>
+        <li style="--c:var(--can)" data-i="1"><a href="#telemetry"><span class="plug"></span><span class="txt"><span class="name">Data Acquisition Wire Harness</span><span class="meta">14 boards, 65 ft, 2026</span></span></a></li>
+        <li style="--c:var(--batt)" data-i="2"><a href="#battery"><span class="plug"></span><span class="txt"><span class="name">24V Supplemental Battery</span><span class="meta">Pack and protection PCB, 2025</span></span></a></li>
+        <li style="--c:var(--sig)" data-i="3"><a href="#harness2027"><span class="plug"></span><span class="txt"><span class="name">2027 Vehicle Wire Harness</span><span class="meta">Architecture and firmware, in progress</span></span></a></li>
+        <li style="--c:var(--auto)" data-i="4"><a href="#integra"><span class="plug"></span><span class="txt"><span class="name">1994 Acura Integra</span><span class="meta">My own car, 2023 to now</span></span></a></li>
       </ol>
     </div>
   </div>
@@ -58,15 +54,155 @@ if(m[location.hash]) location.replace(m[location.hash]);})();
 </section>
 
 <main>
-<section class="work" id="projects" aria-labelledby="work-h">
+<article class="proj" id="smb" style="--c:var(--hv)">
   <div class="wrap">
-    <h2 class="h2" id="work-h">Projects</h2>
-    <div class="cards">
-    <a class="card" href="smb/" style="--c:var(--hv)"><span class="cv"><img src="assets/img/smb-4.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain" loading="lazy"></span><span class="tx"><span class="nm">Segment Monitoring Board</span><span class="mt">BMS hardware, 2026 to now</span></span></a>
-    <a class="card" href="data-acquisition-harness/" style="--c:var(--can)"><span class="cv"><img src="assets/img/data-acquisition-harness-1.jpg" alt="Hand-built data acquisition harness with labeled connectors on a lab bench" loading="lazy"></span><span class="tx"><span class="nm">Data Acquisition Wire Harness</span><span class="mt">14 boards, 65 ft, 2026</span></span></a>
-    <a class="card" href="supplemental-battery/" style="--c:var(--batt)"><span class="cv"><img src="assets/img/supplemental-battery-4.jpg" alt="3D-printed battery enclosure on a workbench" loading="lazy"></span><span class="tx"><span class="nm">24V Supplemental Battery</span><span class="mt">Pack and protection PCB, 2025</span></span></a>
-    <a class="card" href="vehicle-harness-2027/" style="--c:var(--sig)"><span class="cv"><svg aria-hidden="true" viewBox="0 0 320 130">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W1 &nbsp;Battery protection</span></div>
+    <h2><a class="h2link" href="smb/">Segment Monitoring Board</a></h2>
+    <p class="role">Power Systems BPS Engineer, Longhorn Racing Solar. May 2026 to present</p>
+    <div class="stats">
+      <div><b>8 + 8</b><span>cells and thermistors monitored per board</span></div>
+      <div><b>240 mA</b><span>max passive balancing current</span></div>
+      <div><b>3</b><span>isolated ground domains</span></div>
+    </div>
+  
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.048"><button type="button" class="zoom" aria-label="Enlarge: KiCad PCB layout of the Segment Monitoring Board"><img src="assets/img/smb-1.jpg" alt="KiCad PCB layout of the Segment Monitoring Board" loading="lazy"></button><figcaption>PCB layout, Rev A</figcaption></figure><figure class="ph light" style="--r:1.034"><button type="button" class="zoom" aria-label="Enlarge: Front of the Segment Monitoring Board with every part placed, from the interactive BOM"><img src="assets/img/smb-6.jpg" alt="Front of the Segment Monitoring Board with every part placed, from the interactive BOM" loading="lazy"></button><figcaption>Front, every part placed</figcaption></figure><figure class="ph" style="--r:1.333"><button type="button" class="zoom" aria-label="Enlarge: Oscilloscope capture of a successful wake command on the daisy chain"><img src="assets/img/smb-3.jpg" alt="Oscilloscope capture of a successful wake command on the daisy chain" loading="lazy"></button><figcaption>Successful wake</figcaption></figure></div></div>
+    <div class="body">
+      <div><p>The SMB is the car's cell monitoring unit. Each board reads 8 cell voltages and 8 thermistors for one segment of the pack and passively balances the cells. Four of them chain in an isolated ring back to the BPS Leader, which decides when the pack is unsafe.</p><p>I designed the schematic and layout in KiCad around a TI BQ79616, split it into three ground domains to keep comms noise off the measurements, assembled it in-house, and brought it up on the bench. As of November 2026, two boards are chained to the Leader and reporting.</p><a class="more read" href="smb/">Read the full project &rarr;</a></div>
+      <div><figure class="fig">
+          <svg viewBox="0 0 320 265" role="img" aria-label="Daisy-chain ring from the BPS Leader board through four segment monitoring boards and back">
+            <path class="route" stroke-width="3" d="M100,123 H160 V35 H210 M255,55 V80 M255,120 V145 M255,185 V210 M210,230 H160 V147 H100"/>
+            <path class="route" stroke-width="3" opacity=".45" d="M100,131 H168 V43 H210 M263,55 V80 M263,120 V145 M263,185 V210 M210,222 H168 V139 H100"/>
+            <path class="fpulse" pathLength="1" d="M100,123 H160 V35 H300 V230 H160 V147 H100"/>
+            <rect class="box" x="12" y="111" width="88" height="48" rx="6"/>
+            <rect class="box" x="210" y="15" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="80" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="145" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="210" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <text x="56" y="132" text-anchor="middle">BPS Leader</text>
+            <text x="56" y="148" text-anchor="middle" class="soft">BQ79600</text>
+            <text x="258" y="40" text-anchor="middle">SMB</text>
+            <text x="258" y="105" text-anchor="middle">SMB</text>
+            <text x="258" y="170" text-anchor="middle">SMB</text>
+            <text x="258" y="235" text-anchor="middle">SMB</text>
+          </svg>
+          <figcaption><span>Isolated daisy-chain ring, four SMBs</span><span>Hover to send a frame</span></figcaption>
+        </figure><dl class="specs">
+          <dt>AFE</dt><dd>TI BQ79616</dd>
+          <dt>Segment</dt><dd>8S, 33.6 V max</dd>
+          <dt>Balancing</dt><dd>Passive, up to 240 mA</dd>
+          <dt>Bridge</dt><dd>BQ79600 on BPS Leader</dd>
+          <dt>Isolation</dt><dd>Transformer, both ports</dd>
+          <dt>Validation</dt><dd>Cell simulator HIL, oscilloscope, full BPS integration</dd>
+          <dt>Tools</dt><dd>KiCad, Git</dd>
+        </dl></div>
+    </div>
+  </div>
+</article>
+<article class="proj" id="telemetry" style="--c:var(--can)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W2 &nbsp;Data acquisition</span></div>
+    <h2><a class="h2link" href="data-acquisition-harness/">Data Acquisition Wire Harness</a></h2>
+    <p class="role">Wire Harness Project Manager, Longhorn Racing Solar. April to June 2026</p>
+    <div class="stats">
+      <div><b>14</b><span>data acquisition PCBs connected</span></div>
+      <div><b>65 ft</b><span>of cable routed through vehicle CAD</span></div>
+      <div><b>2%</b><span>failure rate across 124 joints</span></div>
+    </div>
+  
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.991"><button type="button" class="zoom" aria-label="Enlarge: Hand-built data acquisition harness with labeled connectors on a lab bench"><img src="assets/img/data-acquisition-harness-1.jpg" alt="Hand-built data acquisition harness with labeled connectors on a lab bench" loading="lazy"></button><figcaption>Finished harness on the bench</figcaption></figure><figure class="ph" style="--r:1.5"><button type="button" class="zoom" aria-label="Enlarge: High Noon driving at sunset at the Formula Sun Grand Prix"><img src="assets/img/data-acquisition-harness-6.jpg" alt="High Noon driving at sunset at the Formula Sun Grand Prix" loading="lazy"></button><figcaption>High Noon at FSGP 2026</figcaption></figure><figure class="ph" style="--r:1.381"><button type="button" class="zoom" aria-label="Enlarge: Harness routing shown in the vehicle CAD model"><img src="assets/img/data-acquisition-harness-2.jpg" alt="Harness routing shown in the vehicle CAD model" loading="lazy"></button><figcaption>Routed through full vehicle CAD</figcaption></figure></div></div>
+    <div class="body">
+      <div><p>This harness connects 14 telemetry boards across 65 feet of cable on High Noon. I routed every branch through the full vehicle CAD in EPLAN, so every wire was cut to its final length before it went near the car.</p><p>I wrote 17 pages of build documentation, led a team that was newer to harness work through the build, and inspected all 124 joints. It ran at the 2026 Formula Sun Grand Prix with zero on-track failures, with me in the driver's seat for the dynamics events.</p><a class="more read" href="data-acquisition-harness/">Read the full project &rarr;</a></div>
+      <div><figure class="fig">
+          <svg viewBox="0 0 320 120" role="img" aria-label="One harness trunk with fourteen branches to circuit boards">
+            <path class="route" stroke-width="7" d="M10,60 H310"/>
+            <g class="route" stroke-width="2.5">
+              <path d="M24,60V24M44,60V96M64,60V24M84,60V96M104,60V24M124,60V96M144,60V24M176,60V96M196,60V24M216,60V96M236,60V24M256,60V96M276,60V24M296,60V96"/>
+            </g>
+            <path class="fpulse" pathLength="1" d="M10,60 H310"/>
+            <g class="box">
+              <rect x="17" y="10" width="14" height="14" rx="2"/><rect x="37" y="96" width="14" height="14" rx="2"/><rect x="57" y="10" width="14" height="14" rx="2"/><rect x="77" y="96" width="14" height="14" rx="2"/><rect x="97" y="10" width="14" height="14" rx="2"/><rect x="117" y="96" width="14" height="14" rx="2"/><rect x="137" y="10" width="14" height="14" rx="2"/><rect x="169" y="96" width="14" height="14" rx="2"/><rect x="189" y="10" width="14" height="14" rx="2"/><rect x="209" y="96" width="14" height="14" rx="2"/><rect x="229" y="10" width="14" height="14" rx="2"/><rect x="249" y="96" width="14" height="14" rx="2"/><rect x="269" y="10" width="14" height="14" rx="2"/><rect x="289" y="96" width="14" height="14" rx="2"/>
+            </g>
+          </svg>
+          <figcaption><span>One trunk, 14 board drops</span><span>Not to scale</span></figcaption>
+        </figure><dl class="specs">
+          <dt>Documentation</dt><dd>17 pages</dd>
+          <dt>Build</dt><dd>Crimp, solder, heat shrink</dd>
+          <dt>Tools</dt><dd>EPLAN Harness proD</dd>
+        </dl></div>
+    </div>
+  </div>
+</article>
+<article class="proj" id="battery" style="--c:var(--batt)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W3 &nbsp;Ignition power</span></div>
+    <h2><a class="h2link" href="supplemental-battery/">24V Supplemental Battery</a></h2>
+    <p class="role">Powertrain Engineer, Longhorn Racing Solar. September to December 2025</p>
+    <div class="stats">
+      <div><b>~0</b><span>overtemperature events, down from 50+</span></div>
+      <div><b>&minus;34%</b><span>pack volume</span></div>
+      <div><b>&minus;23%</b><span>pack weight</span></div>
+    </div>
+  
+    <div class="gal"><div class="grow"><figure class="ph light" style="--r:1.433"><button type="button" class="zoom" aria-label="Enlarge: CAD model of NiMH cells seated in the 3D-printed frame"><img src="assets/img/supplemental-battery-1.jpg" alt="CAD model of NiMH cells seated in the 3D-printed frame" loading="lazy"></button><figcaption>Cells in the 20-cell frame</figcaption></figure><figure class="ph" style="--r:0.655"><button type="button" class="zoom" aria-label="Enlarge: Third revision of the protection PCB in KiCad"><img src="assets/img/supplemental-battery-8.png" alt="Third revision of the protection PCB in KiCad" loading="lazy"></button><figcaption>Protection PCB, Rev 3</figcaption></figure><figure class="ph" style="--r:1.34"><button type="button" class="zoom" aria-label="Enlarge: 3D-printed battery enclosure on a workbench"><img src="assets/img/supplemental-battery-4.jpg" alt="3D-printed battery enclosure on a workbench" loading="lazy"></button><figcaption>Printed enclosure</figcaption></figure></div></div>
+    <div class="body">
+      <div><p>This 20S1P NiMH pack powers the car's ignition sequence. It replaced an off-the-shelf pack that had logged more than 50 overtemperature events, and the new design cut those to near zero.</p><p>I co-owned it from cell selection to test: a KiCad protection board with a 12 A fuse and two thermistors, simulated in LTspice and checked with a scope and thermal camera, and a 3D-printed frame that made the pack 34% smaller and 23% lighter.</p><a class="more read" href="supplemental-battery/">Read the full project &rarr;</a></div>
+      <div><figure class="fig">
+          <svg viewBox="0 0 320 150" role="img" aria-label="Twenty cells in series arranged in four rows of five">
+            <path class="route" stroke-width="4" d="M44,28 H276 V60 H44 V92 H276 V124 H44"/>
+            <path class="fpulse" pathLength="1" d="M44,28 H276 V60 H44 V92 H276 V124 H44"/>
+            <g class="box">
+              <circle cx="44" cy="28" r="12"/><circle cx="102" cy="28" r="12"/><circle cx="160" cy="28" r="12"/><circle cx="218" cy="28" r="12"/><circle cx="276" cy="28" r="12"/>
+              <circle cx="44" cy="60" r="12"/><circle cx="102" cy="60" r="12"/><circle cx="160" cy="60" r="12"/><circle cx="218" cy="60" r="12"/><circle cx="276" cy="60" r="12"/>
+              <circle cx="44" cy="92" r="12"/><circle cx="102" cy="92" r="12"/><circle cx="160" cy="92" r="12"/><circle cx="218" cy="92" r="12"/><circle cx="276" cy="92" r="12"/>
+              <circle cx="44" cy="124" r="12"/><circle cx="102" cy="124" r="12"/><circle cx="160" cy="124" r="12"/><circle cx="218" cy="124" r="12"/><circle cx="276" cy="124" r="12"/>
+            </g>
+            <text x="18" y="33" text-anchor="middle">+</text>
+            <text x="18" y="129" text-anchor="middle">&minus;</text>
+          </svg>
+          <figcaption><span>20 cells in series</span><span>24 V nominal</span></figcaption>
+        </figure><dl class="specs">
+          <dt>Configuration</dt><dd>20S1P NiMH, Tenergy 10505</dd>
+          <dt>Protection</dt><dd>12 A fuse, dual 10k NTC</dd>
+          <dt>Validation</dt><dd>Oscilloscope, multimeter, thermal camera</dd>
+          <dt>Tools</dt><dd>KiCad, LTspice, SolidWorks</dd>
+        </dl></div>
+    </div>
+  </div>
+</article>
+<article class="proj" id="harness2027" style="--c:var(--sig)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W4 &nbsp;Current work</span></div>
+    <h2><a class="h2link" href="vehicle-harness-2027/">2027 Vehicle Wire Harness</a></h2>
+    <p class="role">Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present <span class="wip">In progress</span></p>
+    <div class="stats">
+      <div><b>386</b><span>connectors modeled in harness.design</span></div>
+      <div><b>597</b><span>wires, each with a gauge and part number</span></div>
+      <div><b>2</b><span>dedicated shield pins on every board, new for 2027</span></div>
+    </div>
+  
+    <div class="figrow" style="margin-top:clamp(1.75rem,4vw,2.75rem)"><figure class="fig">
+          <svg viewBox="0 0 640 230" role="img" aria-label="Enclosures on the 2027 harness hanging off one CarCAN trunk that ends at the battery box">
+            <path class="route" stroke-width="6" d="M30,115 H520"/>
+            <path class="fpulse" pathLength="1" d="M30,115 H520"/>
+            <g class="route" stroke-width="3"><path d="M70,115V70 M150,115V70 M230,115V70 M310,115V70 M390,115V70 M110,115V160 M190,115V160 M270,115V160 M350,115V160 M430,115V160"/></g>
+            <g class="box">
+              <rect x="34" y="34" width="72" height="36" rx="6"/><rect x="114" y="34" width="72" height="36" rx="6"/><rect x="194" y="34" width="72" height="36" rx="6"/><rect x="274" y="34" width="72" height="36" rx="6"/><rect x="354" y="34" width="72" height="36" rx="6"/>
+              <rect x="74" y="160" width="72" height="36" rx="6"/><rect x="154" y="160" width="72" height="36" rx="6"/><rect x="234" y="160" width="72" height="36" rx="6"/><rect x="314" y="160" width="72" height="36" rx="6"/><rect x="394" y="160" width="72" height="36" rx="6"/>
+            </g>
+            <rect class="box" x="520" y="80" width="108" height="70" rx="8" style="stroke:var(--c);stroke-width:2.5"/>
+            <text x="70" y="57" text-anchor="middle">Dash</text><text x="150" y="57" text-anchor="middle">MIKA</text><text x="230" y="57" text-anchor="middle">PDU</text><text x="310" y="57" text-anchor="middle">Canopy</text><text x="390" y="57" text-anchor="middle">MPPT</text>
+            <text x="110" y="183" text-anchor="middle">Wheels</text><text x="190" y="183" text-anchor="middle">Suspension</text><text x="270" y="183" text-anchor="middle">IMU</text><text x="350" y="183" text-anchor="middle">Motor ctrl</text><text x="430" y="183" text-anchor="middle">Charger</text>
+            <text x="574" y="112" text-anchor="middle">Battery box</text><text x="574" y="130" text-anchor="middle" class="soft">chain ends here</text>
+            <text x="30" y="222" class="soft">Enclosures on CarCAN, not in routing order</text>
+          </svg>
+          <figcaption><span>What the harness connects</span><span>25 enclosures and boards</span></figcaption>
+        </figure></div>
+    <div class="body">
+      <div><p>I'm leading the full harness for the team's next car. The last car had no pin for CAN cable shielding, so I set a standard 12-pin CAN pinout with two dedicated shield pins on every board and moved the boards to sealed Deutsch DTM connectors.</p><p>I modeled every connector on the car in harness.design, 386 of them, with pin names normalized across every board, and I'm now routing it in EPLAN Harness proD. Manufacturing starts in January.</p><a class="more read" href="vehicle-harness-2027/">Read the full project &rarr;</a></div>
+      <div><figure class="fig">
+          <svg viewBox="0 0 320 130" role="img" aria-label="CarCAN chained through two enclosures and ending at the battery box">
             <path class="route" stroke-width="5" d="M74,55 H102 M168,55 H196"/>
+            <path class="fpulse" pathLength="1" d="M14,55 H300"/>
             <rect class="box" x="10" y="35" width="64" height="40" rx="6"/>
             <rect class="box" x="102" y="35" width="66" height="40" rx="6"/>
             <rect class="box" x="196" y="25" width="114" height="60" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
@@ -76,11 +212,44 @@ if(m[location.hash]) location.replace(m[location.hash]);})();
             <text x="256" y="51" text-anchor="middle">Battery Box</text>
             <text x="256" y="69" text-anchor="middle" class="soft">chain ends here</text>
             <text x="10" y="116" class="soft">Colored blocks: keyed DTM panel mounts</text>
-          </svg></span><span class="tx"><span class="nm">2027 Vehicle Wire Harness</span><span class="mt">Architecture and firmware, in progress</span></span></a>
-    <a class="card" href="integra/" style="--c:var(--auto)"><span class="cv"><img src="assets/img/integra-1.jpg" alt="Green 1994 Acura Integra parked in a driveway" loading="lazy"></span><span class="tx"><span class="nm">1994 Acura Integra</span><span class="mt">My own car, 2023 to now</span></span></a>
+          </svg>
+          <figcaption><span>One CarCAN cable, power and CAN together</span><span>Not to scale</span></figcaption>
+        </figure><dl class="specs">
+          <dt>Connectors</dt><dd>Deutsch DTM, keyed panel mounts</dd>
+          <dt>Firmware</dt><dd>STM32, FreeRTOS, embedded C</dd>
+          <dt>Tools</dt><dd>harness.design, EPLAN Harness proD</dd>
+        </dl></div>
     </div>
   </div>
-</section>
+</article>
+<article class="proj" id="integra" style="--c:var(--auto)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W5 &nbsp;Personal project</span></div>
+    <h2><a class="h2link" href="integra/">1994 Acura Integra</a></h2>
+    <p class="role">Restoration and modification. June 2023 to present</p>
+    <div class="stats">
+      <div><b>30 yr</b><span>old factory harness, barely documented</span></div>
+      <div><b>4</b><span>electrical jobs: CarPlay, grounds, camera, airbag</span></div>
+      <div><b>70+ hr</b><span>interior swap from tan to black</span></div>
+    </div>
+  
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.48"><button type="button" class="zoom" aria-label="Enlarge: Green 1994 Acura Integra parked in a driveway"><img src="assets/img/integra-1.jpg" alt="Green 1994 Acura Integra parked in a driveway" loading="lazy"></button><figcaption>The car today</figcaption></figure><figure class="ph" style="--r:1.357"><button type="button" class="zoom" aria-label="Enlarge: Black 1994 Acura Integra in a parking lot"><img src="assets/img/integra-2.jpg" alt="Black 1994 Acura Integra in a parking lot" loading="lazy"></button><figcaption>Parked at school</figcaption></figure><figure class="ph" style="--r:1.861"><button type="button" class="zoom" aria-label="Enlarge: Integra interior with the dashboard removed, exposing the wiring"><img src="assets/img/integra-3.jpg" alt="Integra interior with the dashboard removed, exposing the wiring" loading="lazy"></button><figcaption>Dash out for harness work</figcaption></figure></div></div>
+    <div class="body">
+      <div><p>My own car, picked with a design matrix and bought with money from a weekday job in high school. It has a 30-year-old harness with very little documentation, so every electrical job starts with tracing circuits by hand.</p><p>I wired in a CarPlay head unit and backup camera, adapted a Japan-market airbag connector, swapped the whole interior from tan to black, and did the cooling, suspension, and engine work myself.</p><a class="more read" href="integra/">Read the full project &rarr;</a></div>
+      <div><figure class="fig">
+          <svg viewBox="0 0 320 110" role="img" aria-label="Reverse light circuit tapped to power a backup camera">
+            <path class="route" stroke-width="5" d="M16,40 H304"/>
+            <path class="route" stroke-width="4" d="M160,40 V78 H304"/>
+            <path class="fpulse" pathLength="1" d="M16,40 H160 V78 H304"/>
+            <rect x="140" y="28" width="40" height="24" rx="6" fill="var(--tape)" opacity=".9"/>
+            <text x="16" y="24">Reverse light feed</text>
+            <text x="304" y="100" text-anchor="end">To backup camera</text>
+          </svg>
+          <figcaption><span>Spliced, soldered, sealed</span><span>Only live in reverse</span></figcaption>
+        </figure><dl class="specs"><dt>Car</dt><dd>1994 Acura Integra LS</dd><dt>Drivetrain</dt><dd>B18B1, 5-speed manual</dd><dt>Work</dt><dd>Wiring, interior, cooling, suspension</dd></dl></div>
+    </div>
+  </div>
+</article>
 </main>
 
 <section class="exp" id="experience" aria-labelledby="exp-h">
@@ -147,6 +316,7 @@ if(m[location.hash]) location.replace(m[location.hash]);})();
   </div>
 </section>
 
+<dialog class="lb" id="lb"><button type="button" aria-label="Close">&times;</button><img alt=""><p></p></dialog>
 <footer><div class="wrap">Leo Block, Austin, Texas</div></footer>
 <script src="assets/site.js"></script>
 </body>
