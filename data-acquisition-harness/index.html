@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Data Acquisition Wire Harness | Leo Block</title>
+<meta name="description" content="A 65 ft harness connecting 14 data acquisition boards on Longhorn Racing Solar&#x27;s car.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../"><i aria-hidden="true"></i>Leo Block</a>
+    <nav aria-label="Sections">
+      <a href="../#projects">Projects</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap"><a class="crumb" href="../#projects">&larr; All projects</a></div>
+<article class="proj" style="--c:var(--can)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W2 &nbsp;Data acquisition</span></div>
+    <h2>Data Acquisition Wire Harness</h2>
+    <p class="role">Wire Harness Project Manager, Longhorn Racing Solar. April to June 2026</p>
+    <div class="stats">
+      <div><b>14</b><span>data acquisition PCBs connected</span></div>
+      <div><b>65 ft</b><span>of cable routed through vehicle CAD</span></div>
+      <div><b>2%</b><span>failure rate across 124 joints</span></div>
+    </div>
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.991"><button type="button" class="zoom" aria-label="Enlarge: Hand-built data acquisition harness with labeled connectors on a lab bench"><img src="../assets/img/data-acquisition-harness-1.jpg" alt="Hand-built data acquisition harness with labeled connectors on a lab bench" loading="lazy"></button><figcaption>Finished harness on the bench</figcaption></figure><figure class="ph" style="--r:1.381"><button type="button" class="zoom" aria-label="Enlarge: Harness routing shown in the vehicle CAD model"><img src="../assets/img/data-acquisition-harness-2.jpg" alt="Harness routing shown in the vehicle CAD model" loading="lazy"></button><figcaption>Routed through full vehicle CAD</figcaption></figure></div><div class="grow"><figure class="ph" style="--r:0.854"><button type="button" class="zoom" aria-label="Enlarge: Hand sketch of the bottom telemetry CAN layout"><img src="../assets/img/data-acquisition-harness-3.jpg" alt="Hand sketch of the bottom telemetry CAN layout" loading="lazy"></button><figcaption>Bottom telemetry CAN sketch</figcaption></figure><figure class="ph light" style="--r:2.193"><button type="button" class="zoom" aria-label="Enlarge: EPlan connector pinout for the TelCAN output"><img src="../assets/img/data-acquisition-harness-4.jpg" alt="EPlan connector pinout for the TelCAN output" loading="lazy"></button><figcaption>EPlan connector pinout</figcaption></figure></div></div>
+    <div class="body">
+      <div>
+        <p>The data acquisition harness connects 14 PCBs across 65 feet of cable. I routed it through the full vehicle CAD in EPlan, so every branch length came from the real car instead of a tape measure and a guess.</p>
+        <p>I produced 17 pages of schematics, pinouts, and manufacturing documentation, then led the build with teammates who were newer to harness work. We terminated everything by hand: crimping, soldering, and heat shrink on every joint.</p>
+        <p>I ran quality inspection on all 124 connector joints before installation, and the finished harness came in with a 2% defect rate. Because every wire was cut to its final CAD length, it went into the car and ran with zero on-track failures.</p>
+        <div class="links">
+          <a class="more" href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_model.html" target="_blank" rel="noopener">Explore the 3D harness model &#8599;</a>
+          <a class="more" href="https://lhrsolar.org/Harness-Docs/Vehicles/NextGen/NonCritical%20Harness/NextGen_NonCritical%20Harness_guide.pdf" target="_blank" rel="noopener">View the schematics (PDF) &#8599;</a>
+        </div>
+      </div>
+      <div>
+        <figure class="fig">
+          <svg viewBox="0 0 320 120" role="img" aria-label="One harness trunk with fourteen branches to circuit boards">
+            <path class="route" stroke-width="7" d="M10,60 H310"/>
+            <g class="route" stroke-width="2.5">
+              <path d="M24,60V24M44,60V96M64,60V24M84,60V96M104,60V24M124,60V96M144,60V24M176,60V96M196,60V24M216,60V96M236,60V24M256,60V96M276,60V24M296,60V96"/>
+            </g>
+            <path class="fpulse" pathLength="1" d="M10,60 H310"/>
+            <g class="box">
+              <rect x="17" y="10" width="14" height="14" rx="2"/><rect x="37" y="96" width="14" height="14" rx="2"/><rect x="57" y="10" width="14" height="14" rx="2"/><rect x="77" y="96" width="14" height="14" rx="2"/><rect x="97" y="10" width="14" height="14" rx="2"/><rect x="117" y="96" width="14" height="14" rx="2"/><rect x="137" y="10" width="14" height="14" rx="2"/><rect x="169" y="96" width="14" height="14" rx="2"/><rect x="189" y="10" width="14" height="14" rx="2"/><rect x="209" y="96" width="14" height="14" rx="2"/><rect x="229" y="10" width="14" height="14" rx="2"/><rect x="249" y="96" width="14" height="14" rx="2"/><rect x="269" y="10" width="14" height="14" rx="2"/><rect x="289" y="96" width="14" height="14" rx="2"/>
+            </g>
+          </svg>
+          <figcaption><span>One trunk, 14 board drops</span><span>Not to scale</span></figcaption>
+        </figure>
+        <dl class="specs">
+          <dt>Documentation</dt><dd>17 pages</dd>
+          <dt>Build</dt><dd>Crimp, solder, heat shrink</dd>
+          <dt>Tools</dt><dd>EPLAN Harness proD</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</article>
+
+<nav class="next" aria-label="Next project" style="--c:var(--batt)">
+  <div class="wrap"><a href="../supplemental-battery/"><span class="plug"></span><span><span class="lbl">Next project</span><span class="nm">24V Supplemental Battery</span></span></a></div>
+</nav>
+</main>
+
+<dialog class="lb" id="lb"><button type="button" aria-label="Close">&times;</button><img alt=""><p></p></dialog>
+<footer><div class="wrap">Leo Block, Austin, Texas</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

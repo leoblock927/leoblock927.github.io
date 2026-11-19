@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2027 Vehicle Wire Harness | Leo Block</title>
+<meta name="description" content="The full wire harness for Longhorn Racing Solar&#x27;s 2027 car: standard CAN pinout, sealed DTM connectors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../"><i aria-hidden="true"></i>Leo Block</a>
+    <nav aria-label="Sections">
+      <a href="../#projects">Projects</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap"><a class="crumb" href="../#projects">&larr; All projects</a></div>
+<article class="proj" style="--c:var(--sig)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W4 &nbsp;Current work</span></div>
+    <h2>2027 Vehicle Wire Harness</h2>
+    <p class="role">Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present <span class="wip">In progress</span></p>
+    <div class="stats">
+      <div><b>12-pin</b><span>standard CAN pinout on every board</span></div>
+      <div><b>2</b><span>dedicated shield pins, new for 2027</span></div>
+      <div><b>4</b><span>conductors carrying power and CAN in one CarCAN cable</span></div>
+    </div>
+    <div class="body">
+      <div>
+        <p>I'm leading the harness for the team's next car, built around its new 2027 boards. The last car's enclosure pinouts had no pin for CAN cable shielding, so shields were tied together with soldered jumpers. I wanted this harness to fix that at the pinout level and cut down on one-off pinouts.</p>
+        <p>Before routing anything, I modeled every connector on the car. Each board is grouped by its enclosure, its connectors come from the board's own design files, and pin names are normalized to one format across every board, so CAN, power, and ground mean the same thing everywhere.</p>
+        <p>From that model I set the architecture. Boards move to sealed Deutsch DTM connectors, with keyed panel mounts on each enclosure. CarCAN runs as a single 4-conductor cable carrying power and CAN, chaining enclosure to enclosure and ending at the battery box. Every board uses the same 12-pin CAN pinout with dedicated shield pins, and gets a panel-mount USB-C so it can be flashed without opening its enclosure.</p>
+        <p>LV power and supply pins get doubled wires to double the panel mount's current rating. The harness also covers the new lighting architecture, the charger path from wall AC through an off-car Elcon enclosure to the battery box, and both motor controller options.</p>
+        <p>I drew the schematic in harness.design and I'm now routing it in EPLAN Harness proD, starting with the battery box out to its panel mounts. I'm also working the BOM with an outside parts donor. Manufacturing starts in January, with the critical harness on the car in February.</p>
+        <p>On the firmware side, I wrote a thread-safe, mutex-protected RGB LED driver in embedded C for the team's STM32 FreeRTOS firmware so multiple tasks can share status LEDs, and stress-tested it with three tasks writing to one LED at once. The team now flashes it first on every new board to confirm the MCU has power and can be programmed.</p>
+      </div>
+      <div>
+        <figure class="fig">
+          <svg viewBox="0 0 320 130" role="img" aria-label="CarCAN chained through two enclosures and ending at the battery box">
+            <path class="route" stroke-width="5" d="M74,55 H102 M168,55 H196"/>
+            <path class="fpulse" pathLength="1" d="M14,55 H300"/>
+            <rect class="box" x="10" y="35" width="64" height="40" rx="6"/>
+            <rect class="box" x="102" y="35" width="66" height="40" rx="6"/>
+            <rect class="box" x="196" y="25" width="114" height="60" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect x="68" y="47" width="9" height="16" rx="2" fill="var(--c)"/><rect x="99" y="47" width="9" height="16" rx="2" fill="var(--c)"/><rect x="162" y="47" width="9" height="16" rx="2" fill="var(--c)"/><rect x="193" y="47" width="9" height="16" rx="2" fill="var(--c)"/>
+            <text x="42" y="60" text-anchor="middle">Board</text>
+            <text x="135" y="60" text-anchor="middle">Board</text>
+            <text x="256" y="51" text-anchor="middle">Battery Box</text>
+            <text x="256" y="69" text-anchor="middle" class="soft">chain ends here</text>
+            <text x="10" y="116" class="soft">Colored blocks: keyed DTM panel mounts</text>
+          </svg>
+          <figcaption><span>One CarCAN cable, power and CAN together</span><span>Not to scale</span></figcaption>
+        </figure>
+        <table class="pin">
+          <caption>Standard 12-pin DTM CAN pinout</caption>
+          <tr><th>Pin</th><th>In</th><th>Pin</th><th>Out</th></tr>
+          <tr><td>1</td><td>Power</td><td>5</td><td>Power</td></tr>
+          <tr><td>2</td><td>CAN_H</td><td>4</td><td>CAN_H</td></tr>
+          <tr><td>11</td><td>CAN_L</td><td>9</td><td>CAN_L</td></tr>
+          <tr><td>12</td><td>GND</td><td>8</td><td>GND</td></tr>
+          <tr><td>3, 10</td><td colspan="3">Cable shield (dedicated)</td></tr>
+          <tr><td>6, 7</td><td colspan="3">Board-specific signals</td></tr>
+        </table>
+        <dl class="specs">
+          <dt>Connectors</dt><dd>Deutsch DTM, keyed panel mounts</dd>
+          <dt>Firmware</dt><dd>STM32, FreeRTOS, embedded C</dd>
+          <dt>Tools</dt><dd>harness.design, EPLAN Harness proD</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</article>
+
+<nav class="next" aria-label="Next project" style="--c:var(--auto)">
+  <div class="wrap"><a href="../integra/"><span class="plug"></span><span><span class="lbl">Next project</span><span class="nm">1994 Acura Integra</span></span></a></div>
+</nav>
+</main>
+
+<dialog class="lb" id="lb"><button type="button" aria-label="Close">&times;</button><img alt=""><p></p></dialog>
+<footer><div class="wrap">Leo Block, Austin, Texas</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

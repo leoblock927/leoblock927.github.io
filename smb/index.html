@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Segment Monitoring Board | Leo Block</title>
+<meta name="description" content="Battery cell monitoring board built around the TI BQ79616 for Longhorn Racing Solar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../"><i aria-hidden="true"></i>Leo Block</a>
+    <nav aria-label="Sections">
+      <a href="../#projects">Projects</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap"><a class="crumb" href="../#projects">&larr; All projects</a></div>
+<article class="proj" style="--c:var(--hv)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W1 &nbsp;Battery protection</span></div>
+    <h2>Segment Monitoring Board</h2>
+    <p class="role">Power Systems BPS Engineer, Longhorn Racing Solar. May 2026 to present</p>
+    <div class="stats">
+      <div><b>8 + 8</b><span>cells and thermistors monitored per board</span></div>
+      <div><b>240 mA</b><span>max passive balancing current</span></div>
+      <div><b>3</b><span>isolated ground domains</span></div>
+    </div>
+    <div class="gal"><div class="grow"><figure class="ph" style="--r:1.048"><button type="button" class="zoom" aria-label="Enlarge: KiCad PCB layout of the Segment Monitoring Board"><img src="../assets/img/smb-1.jpg" alt="KiCad PCB layout of the Segment Monitoring Board" loading="lazy"></button><figcaption>PCB layout, Rev A</figcaption></figure><figure class="ph light" style="--r:1.449"><button type="button" class="zoom" aria-label="Enlarge: KiCad schematic of the Segment Monitoring Board"><img src="../assets/img/smb-2.jpg" alt="KiCad schematic of the Segment Monitoring Board" loading="lazy"></button><figcaption>Full schematic in KiCad</figcaption></figure><figure class="ph" style="--r:1.333"><button type="button" class="zoom" aria-label="Enlarge: Oscilloscope capture of a successful wake command on the daisy chain"><img src="../assets/img/smb-3.jpg" alt="Oscilloscope capture of a successful wake command on the daisy chain" loading="lazy"></button><figcaption>Successful wake</figcaption></figure></div><div class="grow"><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain"><img src="../assets/img/smb-4.jpg" alt="Bench test of the Segment Monitoring Board with a power supply, multimeter and oscilloscope probing the daisy chain" loading="lazy"></button><figcaption>Bench test: BPS Leader waking the SMB</figcaption></figure><figure class="ph" style="--r:1.776"><button type="button" class="zoom" aria-label="Enlarge: Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench"><img src="../assets/img/smb-5.jpg" alt="Full BPS integration test with the leader, segment monitoring boards, power supplies and oscilloscope on a lab bench" loading="lazy"></button><figcaption>Full BPS integration: cell and thermistor readings</figcaption></figure></div></div>
+    <div class="body">
+      <div>
+        <p>The SMB is the car's cell monitoring unit. Each board reads 8 cell voltages and 8 thermistors for one 8S segment of the pack (33.6 V max) and passively balances the cells. It's built around a TI BQ79616 analog front end, and four of them sit in the battery box, chained in a ring back to a BQ79600 bridge on the separate BPS Leader board.</p>
+        <p>I drew the schematic and laid out the PCB in KiCad, then took it through many rounds of board review with teammates. I sized the balancing resistors for 240 mA and specified the passives for temperature sensing and ground isolation.</p>
+        <p>The board is split into three ground domains (AVSS, DVSS, CVSS) so communication noise stays off the cell measurements. Boards talk to each other in a ring, with transformer isolation and ESD protection on both daisy-chain ports and RC filtering on the cell and bus bar sense lines.</p>
+        <p>Once the boards came back, I brought the SMB up on the bench with the BPS Leader, using a 28.8 V supply to stand in for a battery segment. I probed the daisy chain with a scope and confirmed the wake command sent from the leader's BQ79600 reaches the SMB and wakes the BQ79616. The capture above shows a successful wake, with clean communication bursts coming through on the chain. From there I moved on to full BPS integration testing, with the SMB reporting cell voltages and thermistor temperatures back to the leader.</p>
+        <p>I assembled Rev A in-house so we could iterate faster, and ran hardware-in-the-loop tests on a cell simulator before connecting real cells. At first the cell readings were off. I traced it to the bottom cell tap (V0) not being tied to AVSS, so the front end had no reference for cell 1. After that fix every tap read correctly, and the one reading still slightly high turned out to be the simulator's resistor ladder, not the board.</p>
+        <p>I verified isoUART communication across the isolation barrier, then tested the full BPS setup (SMB, leader MCU, and HV carrier) together, since interface faults only show up in-system. When the bridge wouldn't wake, I narrowed it down to the Leader's 3.3 V rail by checking current, continuity, and voltage at each hop. As of November 2026, two SMBs are chained to the Leader and reporting, with temperatures checked against a resistor harness that mimics the thermistors.</p>
+        <a class="more" href="https://github.com/lhr-solar/PS-SegmentMonitoringBoard" target="_blank" rel="noopener">View the KiCad project on GitHub &#8599;</a>
+      </div>
+      <div>
+        <figure class="fig">
+          <svg viewBox="0 0 320 265" role="img" aria-label="Daisy-chain ring from the BPS Leader board through four segment monitoring boards and back">
+            <path class="route" stroke-width="3" d="M100,123 H160 V35 H210 M255,55 V80 M255,120 V145 M255,185 V210 M210,230 H160 V147 H100"/>
+            <path class="route" stroke-width="3" opacity=".45" d="M100,131 H168 V43 H210 M263,55 V80 M263,120 V145 M263,185 V210 M210,222 H168 V139 H100"/>
+            <path class="fpulse" pathLength="1" d="M100,123 H160 V35 H300 V230 H160 V147 H100"/>
+            <rect class="box" x="12" y="111" width="88" height="48" rx="6"/>
+            <rect class="box" x="210" y="15" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="80" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="145" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <rect class="box" x="210" y="210" width="96" height="40" rx="6" style="stroke:var(--c);stroke-width:2.5"/>
+            <text x="56" y="132" text-anchor="middle">BPS Leader</text>
+            <text x="56" y="148" text-anchor="middle" class="soft">BQ79600</text>
+            <text x="258" y="40" text-anchor="middle">SMB</text>
+            <text x="258" y="105" text-anchor="middle">SMB</text>
+            <text x="258" y="170" text-anchor="middle">SMB</text>
+            <text x="258" y="235" text-anchor="middle">SMB</text>
+          </svg>
+          <figcaption><span>Isolated daisy-chain ring, four SMBs</span><span>Hover to send a frame</span></figcaption>
+        </figure>
+        <dl class="specs">
+          <dt>AFE</dt><dd>TI BQ79616</dd>
+          <dt>Segment</dt><dd>8S, 33.6 V max</dd>
+          <dt>Balancing</dt><dd>Passive, up to 240 mA</dd>
+          <dt>Bridge</dt><dd>BQ79600 on BPS Leader</dd>
+          <dt>Isolation</dt><dd>Transformer, both ports</dd>
+          <dt>Validation</dt><dd>Cell simulator HIL, oscilloscope, full BPS integration</dd>
+          <dt>Tools</dt><dd>KiCad, Git</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</article>
+
+<nav class="next" aria-label="Next project" style="--c:var(--can)">
+  <div class="wrap"><a href="../data-acquisition-harness/"><span class="plug"></span><span><span class="lbl">Next project</span><span class="nm">Data Acquisition Wire Harness</span></span></a></div>
+</nav>
+</main>
+
+<dialog class="lb" id="lb"><button type="button" aria-label="Close">&times;</button><img alt=""><p></p></dialog>
+<footer><div class="wrap">Leo Block, Austin, Texas</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>

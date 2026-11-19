@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>24V Supplemental Battery | Leo Block</title>
+<meta name="description" content="A 20S1P NiMH ignition battery with a custom protection PCB and 3D-printed frame.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body class="page">
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../"><i aria-hidden="true"></i>Leo Block</a>
+    <nav aria-label="Sections">
+      <a href="../#projects">Projects</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap"><a class="crumb" href="../#projects">&larr; All projects</a></div>
+<article class="proj" style="--c:var(--batt)">
+  <div class="wrap">
+    <div class="proj-wire"><span class="plug"></span><span class="tag">W3 &nbsp;Ignition power</span></div>
+    <h2>24V Supplemental Battery</h2>
+    <p class="role">Powertrain Engineer, Longhorn Racing Solar. September to December 2025</p>
+    <div class="stats">
+      <div><b>~0</b><span>overtemperature events, down from 50+</span></div>
+      <div><b>&minus;34%</b><span>pack volume</span></div>
+      <div><b>&minus;23%</b><span>pack weight</span></div>
+    </div>
+    <div class="gal"><div class="grow"><figure class="ph light" style="--r:1.433"><button type="button" class="zoom" aria-label="Enlarge: CAD model of NiMH cells seated in the 3D-printed frame"><img src="../assets/img/supplemental-battery-1.jpg" alt="CAD model of NiMH cells seated in the 3D-printed frame" loading="lazy"></button><figcaption>Cells in the 20-cell frame</figcaption></figure><figure class="ph" style="--r:1.729"><button type="button" class="zoom" aria-label="Enlarge: Render of the protection PCB with fuse holder and connectors"><img src="../assets/img/supplemental-battery-2.jpg" alt="Render of the protection PCB with fuse holder and connectors" loading="lazy"></button><figcaption>Protection PCB</figcaption></figure></div><div class="grow"><figure class="ph" style="--r:1.413"><button type="button" class="zoom" aria-label="Enlarge: Dimensioned sketch of the cell frame"><img src="../assets/img/supplemental-battery-3.jpg" alt="Dimensioned sketch of the cell frame" loading="lazy"></button><figcaption>Frame sketch</figcaption></figure><figure class="ph" style="--r:1.340"><button type="button" class="zoom" aria-label="Enlarge: 3D-printed battery enclosure on a workbench"><img src="../assets/img/supplemental-battery-4.jpg" alt="3D-printed battery enclosure on a workbench" loading="lazy"></button><figcaption>Printed enclosure</figcaption></figure><figure class="ph light" style="--r:1.474"><button type="button" class="zoom" aria-label="Enlarge: CAD model of the battery enclosure with mounts"><img src="../assets/img/supplemental-battery-5.jpg" alt="CAD model of the battery enclosure with mounts" loading="lazy"></button><figcaption>Enclosure CAD</figcaption></figure></div></div>
+    <div class="body">
+      <div>
+        <p>This 20S1P NiMH pack powers the car's ignition sequence. It replaced an off-the-shelf pack that had logged more than 50 overtemperature events. I co-owned the project with one other engineer, from cell selection to test, and the new design cut those events to near zero.</p>
+        <p>I compared three Sub-C 4200 mAh cells and picked the Tenergy 10505, so our pack stays close enough to the old one to swap in at a moment's notice. For the bus bars, I calculated resistive loss for four nickel strip sizes at 15 A and went with 0.2 x 12 mm. My first concepts were curved, split parts, and the numbers showed a straight strip did the job better.</p>
+        <p>The protection PCB, drawn in KiCad, has a 12 A automotive blade fuse and two 10k NTC thermistor inputs for redundancy, and it went through three revisions after design reviews. I simulated the protection circuit in LTspice first. After building, I verified trip response under load on an oscilloscope, checked readings with a multimeter, and looked for hot spots with a thermal camera.</p>
+        <p>I also redesigned the cell holder in SolidWorks as a 3D-printed 20-cell frame with handles, bus bar guides, and rails that slide into the power distribution enclosure. The pack came out 34% smaller and 23% lighter. I spot-welded the bus bars to the cells and folded them over for strain relief before soldering them to the PCB.</p>
+        <a class="more" href="https://cloud.wikis.utexas.edu/wiki/spaces/LHRSOLAR/pages/486510866/2024-2026+Custom+Supplemental+Battery" target="_blank" rel="noopener">Read the project documentation &#8599;</a>
+      </div>
+      <div>
+        <figure class="fig">
+          <svg viewBox="0 0 320 150" role="img" aria-label="Twenty cells in series arranged in four rows of five">
+            <path class="route" stroke-width="4" d="M44,28 H276 V60 H44 V92 H276 V124 H44"/>
+            <path class="fpulse" pathLength="1" d="M44,28 H276 V60 H44 V92 H276 V124 H44"/>
+            <g class="box">
+              <circle cx="44" cy="28" r="12"/><circle cx="102" cy="28" r="12"/><circle cx="160" cy="28" r="12"/><circle cx="218" cy="28" r="12"/><circle cx="276" cy="28" r="12"/>
+              <circle cx="44" cy="60" r="12"/><circle cx="102" cy="60" r="12"/><circle cx="160" cy="60" r="12"/><circle cx="218" cy="60" r="12"/><circle cx="276" cy="60" r="12"/>
+              <circle cx="44" cy="92" r="12"/><circle cx="102" cy="92" r="12"/><circle cx="160" cy="92" r="12"/><circle cx="218" cy="92" r="12"/><circle cx="276" cy="92" r="12"/>
+              <circle cx="44" cy="124" r="12"/><circle cx="102" cy="124" r="12"/><circle cx="160" cy="124" r="12"/><circle cx="218" cy="124" r="12"/><circle cx="276" cy="124" r="12"/>
+            </g>
+            <text x="18" y="33" text-anchor="middle">+</text>
+            <text x="18" y="129" text-anchor="middle">&minus;</text>
+          </svg>
+          <figcaption><span>20 cells in series</span><span>24 V nominal</span></figcaption>
+        </figure>
+        <dl class="specs">
+          <dt>Configuration</dt><dd>20S1P NiMH, Tenergy 10505</dd>
+          <dt>Protection</dt><dd>12 A fuse, dual 10k NTC</dd>
+          <dt>Validation</dt><dd>Oscilloscope, multimeter, thermal camera</dd>
+          <dt>Tools</dt><dd>KiCad, LTspice, SolidWorks</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</article>
+
+<nav class="next" aria-label="Next project" style="--c:var(--sig)">
+  <div class="wrap"><a href="../vehicle-harness-2027/"><span class="plug"></span><span><span class="lbl">Next project</span><span class="nm">2027 Vehicle Wire Harness</span></span></a></div>
+</nav>
+</main>
+
+<dialog class="lb" id="lb"><button type="button" aria-label="Close">&times;</button><img alt=""><p></p></dialog>
+<footer><div class="wrap">Leo Block, Austin, Texas</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
