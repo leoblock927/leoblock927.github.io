@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,700..900&family=IBM+Plex+Mono:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=db5520ae">
+<link rel="stylesheet" href="../assets/site.css?v=50f378c6">
 </head>
 <body>
 <header class="hdr">
@@ -17,9 +17,15 @@
   <div class="mbar"><a class="wm" href="../">Leo Block</a><button class="plusbtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mmenu"><svg viewBox="0 0 33 33" fill="none" aria-hidden="true"><path d="M0.5 16.5h32M16.5 0.5v32" stroke="currentColor" stroke-width="1.4"/></svg></button></div>
   <nav class="mmenu" id="mmenu" aria-label="Main"><div class="grp"><a href="../#projects">Projects</a><ul><li><a href="../smb/">SMB</a></li><li><a href="../data-acquisition-harness/">DAQ Harness</a></li><li><a href="../supplemental-battery/">24V Battery</a></li><li><a href="../vehicle-harness-2027/">2027 Harness</a></li><li><a href="../integra/">Acura Integra</a></li></ul></div><div class="grp"><a href="../#about">About</a><ul><li><a href="../#about">Solar car team</a></li><li><a href="../data-acquisition-harness/#on-track">FSGP 2026</a></li></ul></div><div class="grp"><a href="../#experience">Experience</a><ul><li><a href="../#experience">Roles</a></li><li><a href="../#skills">Skills</a></li></ul></div><div class="grp"><a href="../#contact">Contact</a><ul><li><a href="mailto:leodblock@gmail.com">Email</a></li><li><a href="https://www.linkedin.com/in/leo-block" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://github.com/leoblock927" target="_blank" rel="noopener">GitHub</a></li></ul></div></nav>
 </header>
-<main style="--c:var(--purple)">
-<section class="hero grad">
-  <div class="media" aria-hidden="true"><svg class="xray" aria-label="Enclosures on the 2027 harness hanging off one CarCAN trunk that ends at the battery box" role="img" viewbox="0 0 640 230">
+<main class="proj" style="--c:var(--purple)">
+<header class="phero">
+  <div class="pt">
+    <div class="lbl " style="--a:var(--purple)"><i></i><span>Project 04 &nbsp;/&nbsp; Current work</span></div>
+    <h1 class="h1">2027 Vehicle Wire Harness</h1>
+    <p class="sub">Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present<span class="wip">In progress</span></p>
+    <div class="stats"><div><b>386</b><span>connectors modeled in harness.design</span></div><div><b>597</b><span>wires, each with a gauge and part number</span></div><div><b>2</b><span>dedicated shield pins on every board, new for 2027</span></div></div>
+  </div>
+  <div class="cover gpanel" aria-hidden="true"><svg class="xray" aria-label="Enclosures on the 2027 harness hanging off one CarCAN trunk that ends at the battery box" role="img" viewbox="0 0 640 230">
 <path class="route" d="M30,115 H520" stroke-width="6"></path>
 <path class="fpulse" d="M30,115 H520" pathlength="1"></path>
 <g class="route" stroke-width="3"><path d="M70,115V70 M150,115V70 M230,115V70 M310,115V70 M390,115V70 M110,115V160 M190,115V160 M270,115V160 M350,115V160 M430,115V160"></path></g>
@@ -33,43 +39,8 @@
 <text text-anchor="middle" x="574" y="112">Battery box</text><text class="soft" text-anchor="middle" x="574" y="130">chain ends here</text>
 
 </svg></div>
-  <div class="inner">
-    <div class="lbl " style="--a:var(--purple)"><i></i><span>Project 04 &nbsp;/&nbsp; Current work</span></div>
-    <h1 class="h1">2027 Vehicle Wire Harness</h1>
-    <p class="sub">Wire Harness Project Manager, Longhorn Racing Solar. October 2026 to present<span class="wip">In progress</span></p>
-  </div>
-</section>
-
-<section class="sec stsec">
-  <div class="stats"><div style="--a:var(--purple)"><b>386</b><span>connectors modeled in harness.design</span></div><div style="--a:var(--purple)"><b>597</b><span>wires, each with a gauge and part number</span></div><div style="--a:var(--purple)"><b>2</b><span>dedicated shield pins on every board, new for 2027</span></div></div>
-</section>
-<section class="ps"><div class="phead"><div class="lbl " style="--a:var(--purple)"><i></i><span>At a glance</span></div><h2 class="h3">Key specs</h2></div><div class="pbody"><div class="txt"><table class="t">
-<caption>Standard 12-pin DTM CAN pinout</caption>
-<tr><th>Pin</th><th>In</th><th>Pin</th><th>Out</th></tr>
-<tr><td>1</td><td>Power</td><td>5</td><td>Power</td></tr>
-<tr><td>2</td><td>CAN_H</td><td>4</td><td>CAN_H</td></tr>
-<tr><td>11</td><td>CAN_L</td><td>9</td><td>CAN_L</td></tr>
-<tr><td>12</td><td>GND</td><td>8</td><td>GND</td></tr>
-<tr><td>3, 10</td><td colspan="3">Cable shield (dedicated)</td></tr>
-<tr><td>6, 7</td><td colspan="3">Board-specific signals</td></tr>
-</table><dl class="specs"><dt>Connectors</dt><dd>Deutsch DTM, keyed panel mounts</dd><dt>Firmware</dt><dd>STM32, FreeRTOS, embedded C</dd><dt>Tools</dt><dd>harness.design, EPLAN Harness proD</dd></dl></div><div class="media"><figure class="fig mi span">
-<svg aria-label="CarCAN chained through two enclosures and ending at the battery box" role="img" viewbox="0 0 320 130">
-<path class="route" d="M74,55 H102 M168,55 H196" stroke-width="5"></path>
-<path class="fpulse" d="M14,55 H300" pathlength="1"></path>
-<rect class="box" height="40" rx="6" width="64" x="10" y="35"></rect>
-<rect class="box" height="40" rx="6" width="66" x="102" y="35"></rect>
-<rect class="box" height="60" rx="6" style="stroke:var(--c);stroke-width:2.5" width="114" x="196" y="25"></rect>
-<rect fill="var(--c)" height="16" rx="2" width="9" x="68" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="99" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="162" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="193" y="47"></rect>
-<text text-anchor="middle" x="42" y="60">Board</text>
-<text text-anchor="middle" x="135" y="60">Board</text>
-<text text-anchor="middle" x="256" y="51">Battery Box</text>
-<text class="soft" text-anchor="middle" x="256" y="69">chain ends here</text>
-<text class="soft" x="10" y="116">Colored blocks: keyed DTM panel mounts</text>
-</svg>
-<figcaption><span>One CarCAN cable, power and CAN together</span><span>Not to scale</span></figcaption>
-</figure></div></div></section>
-<section class="ps" id="the-problem"><div class="phead"><h2 class="h3">The problem</h2></div><div class="pbody solo"><div class="txt"><p>I'm leading the harness for the team's next car. The last car's enclosure pinouts had no pin for CAN cable shielding, so shields were tied together with soldered jumpers and Wago connectors. Internal harnessing was also painful because different connector families numbered their pins differently. I wanted this harness to fix both at the pinout level and cut down on one-off pinouts.</p></div></div></section>
-<section class="ps" id="modeling-every-connector"><div class="phead"><h2 class="h3">Modeling every connector</h2></div><div class="pbody"><div class="txt"><p>Before routing anything, I modeled every connector on the car as a nail board in harness.design. Each board sits in a group for its enclosure, its connectors come straight from the board's own design files, and pin names are normalized to one format across every board (CarCAN_H, CarCAN_L, CarCAN_SHIELD, GND, 12V), so CAN, power, and ground mean the same thing everywhere.</p></div><div class="media"><figure class="fig mi span">
+</header>
+<div class="blocks"><section class="blk" id="the-problem"><h2 class="bh">The problem</h2><p>I'm leading the harness for the team's next car. The last car's enclosure pinouts had no pin for CAN cable shielding, so shields were tied together with soldered jumpers and Wago connectors. Internal harnessing was also painful because different connector families numbered their pins differently. I wanted this harness to fix both at the pinout level and cut down on one-off pinouts.</p></section><section class="blk" id="modeling-every-connector"><h2 class="bh">Modeling every connector</h2><p>Before routing anything, I modeled every connector on the car as a nail board in harness.design. Each board sits in a group for its enclosure, its connectors come straight from the board's own design files, and pin names are normalized to one format across every board (CarCAN_H, CarCAN_L, CarCAN_SHIELD, GND, 12V), so CAN, power, and ground mean the same thing everywhere.</p><div class="strip"><figure class="fig sfig">
 <svg aria-label="Enclosures on the 2027 harness hanging off one CarCAN trunk that ends at the battery box" role="img" viewbox="0 0 640 230">
 <path class="route" d="M30,115 H520" stroke-width="6"></path>
 <path class="fpulse" d="M30,115 H520" pathlength="1"></path>
@@ -85,15 +56,13 @@
 <text class="soft" x="30" y="222">Enclosures on CarCAN, not in routing order</text>
 </svg>
 <figcaption><span>What the harness connects</span><span>25 enclosures and boards</span></figcaption>
-</figure></div></div></section>
-<section class="ps" id="architecture"><div class="phead"><h2 class="h3">Architecture</h2></div><div class="pbody solo"><div class="txt"><p>The new Rev B boards move from Nano-Fit connectors to sealed Deutsch DTM connectors, with keyed panel mounts on each enclosure (keys A, B, C, D in order when an enclosure has more than one). CarCAN runs as a single 4-conductor cable carrying power and CAN, chaining enclosure to enclosure and ending at the battery box. Every board uses the same 12-pin CAN pinout with two dedicated shield pins, and every board gets a panel-mount USB-C so it can be flashed without opening its enclosure.</p><p>On the battery box, LV power and supply pins use two wires each, which doubles the panel mount's current rating. Inside, four SMBs and four thermistor flex boards sit in a segment housing with the BPS Leader and LV controller.</p><table class="t"><caption>Battery box panel mount pin allotments</caption>
+</figure></div></section><section class="blk" id="architecture"><h2 class="bh">Architecture</h2><p>The new Rev B boards move from Nano-Fit connectors to sealed Deutsch DTM connectors, with keyed panel mounts on each enclosure (keys A, B, C, D in order when an enclosure has more than one). CarCAN runs as a single 4-conductor cable carrying power and CAN, chaining enclosure to enclosure and ending at the battery box. Every board uses the same 12-pin CAN pinout with two dedicated shield pins, and every board gets a panel-mount USB-C so it can be flashed without opening its enclosure.</p><p>On the battery box, LV power and supply pins use two wires each, which doubles the panel mount's current rating. Inside, four SMBs and four thermistor flex boards sit in a segment housing with the BPS Leader and LV controller.</p><table class="t"><caption>Battery box panel mount pin allotments</caption>
 <tr><th>Pins</th><th>BPS side</th><th>Pins</th><th>LVC side</th></tr>
 <tr><td>2</td><td>Elcon power</td><td>3</td><td>CarCAN</td></tr>
 <tr><td>3</td><td>Elcon CAN</td><td>2</td><td>LV enable</td></tr>
 <tr><td>4</td><td>E-stop</td><td>4</td><td>LV power (doubled)</td></tr>
 <tr><td></td><td></td><td>4</td><td>Power supply (doubled)</td></tr>
-</table></div></div></section>
-<section class="ps" id="lighting-charging-and-motor"><div class="phead"><h2 class="h3">Lighting, charging, and motor</h2></div><div class="pbody"><div class="txt"><p>The harness covers the team's new lighting architecture: a dedicated LightingCAN runs from the driver interface board to a new canopy board, and every light uses the same pinout (12V, GND, 12V PWM, shield). The charger path runs from wall AC to an off-car Elcon enclosure, through an on-car charger enclosure, to the battery box.</p><p>It also carries both motor controller options the team is weighing, with an Amphenol ePower-Lite panel mount for the DC bus and 6 AWG lugs for the high-current connections.</p></div><div class="media"><figure class="fig mi span">
+</table></section><section class="blk" id="lighting-charging-and-motor"><h2 class="bh">Lighting, charging, and motor</h2><p>The harness covers the team's new lighting architecture: a dedicated LightingCAN runs from the driver interface board to a new canopy board, and every light uses the same pinout (12V, GND, 12V PWM, shield). The charger path runs from wall AC to an off-car Elcon enclosure, through an on-car charger enclosure, to the battery box.</p><p>It also carries both motor controller options the team is weighing, with an Amphenol ePower-Lite panel mount for the DC bus and 6 AWG lugs for the high-current connections.</p><div class="strip"><figure class="fig sfig">
 <svg aria-label="LightingCAN from the driver interface board to the canopy board, each driving its own lights" role="img" viewbox="0 0 340 150">
 <rect class="box" height="48" rx="6" width="104" x="6" y="40"></rect>
 <rect class="box" height="48" rx="6" style="stroke:var(--c);stroke-width:2.5" width="104" x="230" y="40"></rect>
@@ -111,7 +80,7 @@
 <text class="soft" text-anchor="middle" x="282" y="143">BPS strobe</text>
 </svg>
 <figcaption><span>New lighting architecture</span><span>Same pinout on every light</span></figcaption>
-</figure><figure class="fig mi span">
+</figure><figure class="fig sfig">
 <svg aria-label="Charger path from wall AC through an off-car Elcon enclosure and an on-car charger enclosure to the battery box" role="img" viewbox="0 0 340 150">
 <rect class="box" height="48" rx="6" width="62" x="6" y="46"></rect>
 <rect class="box" height="48" rx="6" stroke-dasharray="4 3" width="70" x="90" y="46"></rect>
@@ -130,11 +99,32 @@
 <text class="soft" x="6" y="130">Dashed: lives off the car</text>
 </svg>
 <figcaption><span>Charger path</span><span>Not to scale</span></figcaption>
-</figure></div></div></section>
-<section class="ps" id="by-the-numbers"><div class="phead"><h2 class="h3">By the numbers</h2></div><div class="pbody solo"><div class="txt"><p>The harness.design model now holds 386 connectors, 597 wires, 50 cables, and 86 mated connector pairs, grouped into 25 enclosures and boards. Every one of those connectors has a real part number or a clear TBD, so the BOM falls straight out of the model.</p></div></div></section>
-<section class="ps" id="where-it-stands"><div class="phead"><h2 class="h3">Where it stands</h2></div><div class="pbody solo"><div class="txt"><p>The schematic is done in harness.design and I'm now routing it in EPLAN Harness proD, starting with the battery box out to its panel mounts. I'm working the BOM with an outside parts donor: I fixed every TBD and wrong part number and will send final lengths once routing is done. Manufacturing starts in January, with the critical harness on the car in February.</p></div></div></section>
-<section class="ps" id="firmware"><div class="phead"><h2 class="h3">Firmware</h2></div><div class="pbody solo"><div class="txt"><p>I also wrote a thread-safe, mutex-protected RGB LED driver in embedded C for the team's STM32 FreeRTOS firmware so multiple tasks can share status LEDs, and stress-tested it with three tasks writing to one LED at once. The team now flashes it first on every new board to confirm the MCU has power and can be programmed.</p></div></div></section>
-<a class="next" href="../integra/" style="--a:var(--amber)"><div class="lbl " style="--a:var(--amber)"><i></i><span>Next project</span></div><span class="h2" style="margin-top:16px">1994 Acura Integra <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
+</figure></div></section><section class="blk" id="by-the-numbers"><h2 class="bh">By the numbers</h2><p>The harness.design model now holds 386 connectors, 597 wires, 50 cables, and 86 mated connector pairs, grouped into 25 enclosures and boards. Every one of those connectors has a real part number or a clear TBD, so the BOM falls straight out of the model.</p></section><section class="blk" id="where-it-stands"><h2 class="bh">Where it stands</h2><p>The schematic is done in harness.design and I'm now routing it in EPLAN Harness proD, starting with the battery box out to its panel mounts. I'm working the BOM with an outside parts donor: I fixed every TBD and wrong part number and will send final lengths once routing is done. Manufacturing starts in January, with the critical harness on the car in February.</p></section><section class="blk" id="firmware"><h2 class="bh">Firmware</h2><p>I also wrote a thread-safe, mutex-protected RGB LED driver in embedded C for the team's STM32 FreeRTOS firmware so multiple tasks can share status LEDs, and stress-tested it with three tasks writing to one LED at once. The team now flashes it first on every new board to confirm the MCU has power and can be programmed.</p></section><section class="blk"><h2 class="bh">At a glance</h2><table class="t">
+<caption>Standard 12-pin DTM CAN pinout</caption>
+<tr><th>Pin</th><th>In</th><th>Pin</th><th>Out</th></tr>
+<tr><td>1</td><td>Power</td><td>5</td><td>Power</td></tr>
+<tr><td>2</td><td>CAN_H</td><td>4</td><td>CAN_H</td></tr>
+<tr><td>11</td><td>CAN_L</td><td>9</td><td>CAN_L</td></tr>
+<tr><td>12</td><td>GND</td><td>8</td><td>GND</td></tr>
+<tr><td>3, 10</td><td colspan="3">Cable shield (dedicated)</td></tr>
+<tr><td>6, 7</td><td colspan="3">Board-specific signals</td></tr>
+</table><dl class="specs"><dt>Connectors</dt><dd>Deutsch DTM, keyed panel mounts</dd><dt>Firmware</dt><dd>STM32, FreeRTOS, embedded C</dd><dt>Tools</dt><dd>harness.design, EPLAN Harness proD</dd></dl><div class="strip"><figure class="fig sfig">
+<svg aria-label="CarCAN chained through two enclosures and ending at the battery box" role="img" viewbox="0 0 320 130">
+<path class="route" d="M74,55 H102 M168,55 H196" stroke-width="5"></path>
+<path class="fpulse" d="M14,55 H300" pathlength="1"></path>
+<rect class="box" height="40" rx="6" width="64" x="10" y="35"></rect>
+<rect class="box" height="40" rx="6" width="66" x="102" y="35"></rect>
+<rect class="box" height="60" rx="6" style="stroke:var(--c);stroke-width:2.5" width="114" x="196" y="25"></rect>
+<rect fill="var(--c)" height="16" rx="2" width="9" x="68" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="99" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="162" y="47"></rect><rect fill="var(--c)" height="16" rx="2" width="9" x="193" y="47"></rect>
+<text text-anchor="middle" x="42" y="60">Board</text>
+<text text-anchor="middle" x="135" y="60">Board</text>
+<text text-anchor="middle" x="256" y="51">Battery Box</text>
+<text class="soft" text-anchor="middle" x="256" y="69">chain ends here</text>
+<text class="soft" x="10" y="116">Colored blocks: keyed DTM panel mounts</text>
+</svg>
+<figcaption><span>One CarCAN cable, power and CAN together</span><span>Not to scale</span></figcaption>
+</figure></div></section></div>
+<a class="next" href="../integra/" style="--a:var(--amber)"><span class="nl">Next project</span><span class="nt">1994 Acura Integra <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 7h11M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" stroke-width="1.3"/></svg></span></a>
 </main>
 <footer class="foot" id="contact">
   <div class="top">
@@ -151,6 +141,6 @@
   </div>
 </footer>
 <dialog class="lb" id="lb"><button type="button" aria-label="Close"><svg viewBox="0 0 33 33" fill="none" aria-hidden="true"><path d="M0.5 16.5h32M16.5 0.5v32" stroke="currentColor" stroke-width="1.4"/></svg></button><img alt=""><p></p></dialog>
-<script src="../assets/site.js?v=db5520ae"></script>
+<script src="../assets/site.js?v=50f378c6"></script>
 </body>
 </html>
