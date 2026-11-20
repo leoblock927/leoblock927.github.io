@@ -398,3 +398,37 @@ table.t td{padding:6px 10px 6px 0}
 
 .band{height:min(30vh,300px)}
 .acc .stage{aspect-ratio:16/10;max-height:52vh}
+
+
+/* ===== middle ground ===== */
+.phero .cover{max-height:380px;aspect-ratio:16/10}
+.phero .h1{font-size:clamp(2rem,3.9vw,4rem)}
+.phero .stats b{font-size:clamp(1.4rem,2.5vw,2.6rem)}
+.rows2{padding:clamp(28px,3vw,44px) var(--g) 0}
+.row2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:start;padding:clamp(22px,2.4vw,34px) 0;border-top:1px solid var(--line);position:relative}
+.row2::before{content:"";position:absolute;left:0;top:-1px;width:56px;height:1px;background:var(--c);box-shadow:0 0 6px var(--c),0 0 12px var(--c)}
+.row2.solo{grid-template-columns:minmax(0,1fr)}
+.row2 .tx{max-width:46rem}
+.row2 .bh{font-size:clamp(1.05rem,1.45vw,1.45rem);margin-bottom:.7rem}
+.row2 p{margin:0 0 .7rem}
+.row2 p:last-child{margin-bottom:0}
+.row2 p a{text-decoration-color:var(--c);text-underline-offset:3px}
+.row2 .specs dt,.row2 .specs dd{padding:6px 0}
+.row2 table.t{font-size:.9rem;margin:.3rem 0 .7rem}
+.row2 table.t td,.row2 table.t th{padding:5px 8px 5px 0}
+.side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-content:start}
+.side .st.two{grid-column:span 2}
+.side .sfig{grid-column:1/-1;padding:14px 16px;margin:0}
+.side .sfig::before,.side .sfig::after{width:11px;height:11px}
+.side .sfig::before{top:-6px;left:-6px}.side .sfig::after{bottom:-6px;right:-6px}
+.side .sfig svg{max-height:200px;width:auto;max-width:100%;margin:0 auto}
+.side .sfig figcaption{margin-top:8px;font-size:10px}
+.side .st figcaption{font-size:10px}
+.next{margin-top:clamp(36px,3.6vw,56px)}
+@media (max-width:820px){.row2{grid-template-columns:1fr}.side{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* home: between the two */
+.hero{height:min(70svh,680px)}
+.acc .stage{aspect-ratio:4/3;max-height:60vh}
+.band{height:min(42vh,420px)}
+.band svg{width:min(820px,86%)}
+.card .im{aspect-ratio:2.6/1}
