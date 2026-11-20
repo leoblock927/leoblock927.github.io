@@ -18,30 +18,33 @@
     a.addEventListener('click', function(){ a.blur(); });
   });
 
-  // accordion with image swap
+  // accordion with image swap and per-project photo strip
   document.querySelectorAll('[data-acc]').forEach(function(acc){
     var items = [].slice.call(acc.querySelectorAll('.item'));
     var media = [].slice.call(acc.querySelectorAll('.stage > *'));
+    var sel = items.map(function(){ return 0; });
+    function paint(i){
+      media.forEach(function(m){ m.classList.toggle('on', +m.dataset.i === i && +m.dataset.k === sel[i]); });
+      var it = items[i];
+      if (it) it.querySelectorAll('.thumb').forEach(function(t){ t.classList.toggle('sel', +t.dataset.k === sel[i]); });
+    }
+    function openIdx(){ return items.findIndex(function(it){ return it.classList.contains('open'); }); }
     function show(i){
       items.forEach(function(it, j){
         var on = j === i;
         it.classList.toggle('open', on);
-        it.querySelector('button').setAttribute('aria-expanded', on ? 'true' : 'false');
+        it.querySelector('.hd').setAttribute('aria-expanded', on ? 'true' : 'false');
       });
-      media.forEach(function(m, j){ m.classList.toggle('on', j === (i < 0 ? 0 : i)); });
+      paint(i < 0 ? 0 : i);
     }
     items.forEach(function(it, i){
-      it.querySelector('button').addEventListener('click', function(){
-        show(it.classList.contains('open') ? -1 : i);
+      it.querySelector('.hd').addEventListener('click', function(){ show(it.classList.contains('open') ? -1 : i); });
+      it.querySelectorAll('.thumb').forEach(function(t){
+        t.addEventListener('click', function(){ sel[i] = +t.dataset.k; paint(i); });
       });
-      it.addEventListener('mouseenter', function(){
-        if (!acc.querySelector('.item.open')) media.forEach(function(m, j){ m.classList.toggle('on', j === i); });
-      });
+      it.addEventListener('mouseenter', function(){ if (openIdx() < 0) paint(i); });
     });
-    acc.addEventListener('mouseleave', function(){
-      var o = items.findIndex(function(it){ return it.classList.contains('open'); });
-      media.forEach(function(m, j){ m.classList.toggle('on', j === (o < 0 ? 0 : o)); });
-    });
+    acc.addEventListener('mouseleave', function(){ var o = openIdx(); paint(o < 0 ? 0 : o); });
   });
 
   // diagrams send a pulse once when they scroll into view
