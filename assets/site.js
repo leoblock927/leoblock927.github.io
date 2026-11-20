@@ -62,7 +62,7 @@
     document.querySelectorAll('.zoom').forEach(function(b){
       b.addEventListener('click', function(){
         var im = b.querySelector('img'), cap = b.parentNode.querySelector('figcaption');
-        lbi.src = im.src; lbi.alt = im.alt; lbp.textContent = cap ? cap.textContent : ''; lb.showModal();
+        lbi.src = im.dataset.full || im.currentSrc || im.src; lbi.alt = im.alt; lbp.textContent = cap ? cap.textContent : ''; lb.showModal();
       });
     });
     lb.querySelector('button').addEventListener('click', function(){ lb.close(); });
